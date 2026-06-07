@@ -1,5 +1,3 @@
-JavaScript
-
 // Fonction globale pour changer de page sans recharger
 window.changerPage = function(page) {
     if (page === 'accueil') {
