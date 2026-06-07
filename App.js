@@ -1,4 +1,4 @@
-// --- 1. DONNÉES COMPLÈTES VIE ET MINISTÈRE ---
+// --- 1. DONNÉES COMPLÈTES VIE ET MINISTÈRE (TEXTE EXTRAIT DU PDF) ---
 let semainesVem = [
     {
         titre: "07/07/2026 | JÉRÉMIE 13-15",
@@ -42,7 +42,7 @@ let semainesVem = [
         titre: "21/07/2026 | JÉRÉMIE 18-19",
         intro: { cantique: "44", priere: "Thierry GILLES", president: "Thierry GILLES" },
         joyaux: [
-            { temps: "18:36", titre: "1. La guérison spirituelle is toujours possible (10 min.)", attribution: "Freddy MAMBOLE" },
+            { temps: "18:36", titre: "1. La guérison spirituelle est toujours possible (10 min.)", attribution: "Freddy MAMBOLE" },
             { temps: "18:46", titre: "2. Perles spirituelles JÉRÉMIE 18-19 (10 min.)", attribution: "André SIBA" },
             { temps: "18:56", titre: "3. Lecture de la Bible (4 min.)", attribution: "Malick TORVAL" }
         ],
@@ -188,7 +188,7 @@ let donnéesDiscours = [
     { date: "30/05/2026", theme: "Marchez-vous avec Dieu ?", num: "149", orateur: "ADHEL Gilbert", assemblee: "GOYAVE", pres: "SIBA André", lecteur: "BENONY Christian", groupe: "-" },
     { date: "06/06/2026", theme: "SEMAINE SPÉCIALE - Comment récolter la vie éternelle ?", num: "-", orateur: "GALTIER Ludovic", assemblee: "-", pres: "CASI Daniel", lecteur: "-", groupe: "-", special: "OUI" },
     { date: "13/06/2026", theme: "Pourquoi craindre le vrai Dieu ?", num: "163", orateur: "BENONY Christian", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "ADHEL Gilbert", groupe: "-" },
-    { date: "20/06/2026", theme: "La death est-elle la fin de tout ?", num: "184", orateur: "ASTASIE Roland", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "GILLES Thierry", groupe: "-" },
+    { date: "20/06/2026", theme: "La mort est-elle la fin de tout ?", num: "184", orateur: "ASTASIE Roland", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "GILLES Thierry", groupe: "-" },
     { date: "27/06/2026", theme: "Utilisons l'instruction pour louer Jéhovah", num: "146", orateur: "BUJADINOVIC Erick", assemblee: "POINTE NOIRE", pres: "LOGNOS Nicolas", lecteur: "CASI Daniel", groupe: "MANNETIER" }
 ];
 
@@ -208,7 +208,7 @@ let donnéesProgramme = [
     { audio: "Victor", zoom: "Thierry", estrade: "Fredy", perchistes: "Jean Louis / Olivier", mardi: "04/08/2026", samedi: "08/08/2026", special: "" }
 ];
 
-// --- 4. DONNÉES COMPLÈTES NETTOYAGE ---
+// --- 4. DONNÉES COMPLÈTES NETTOYAGE COMPLET JUSQU'À DÉCEMBRE ---
 let donnéesNettoyage = [
     { groupe: "Benony", mardi: "21/04/26", samedi: "25/04/26", special: "" },
     { groupe: "Gilles", mardi: "28/04/26", samedi: "02/05/26", special: "" },
@@ -249,8 +249,23 @@ let donnéesNettoyage = [
     { groupe: "Lognos", mardi: "29/12/26", samedi: "03/01/27", special: "" }
 ];
 
+// --- 5. INITIALISATION AUTOMATIQUE DES 120 CARTES DE TERRITOIRE ---
+let donnéesTerritoires = [];
+for (let i = 1; i <= 120; i++) {
+    donnéesTerritoires.push({
+        id: i,
+        zone: i <= 40 ? "Bourg" : i <= 80 ? "Campagne" : "Secteur Hauts",
+        proclamateur: "",
+        dateAttribution: "",
+        recto: `Secteur général et limites cartographiques du Territoire ${i}.`,
+        verso: `Rues, résidences, impasses détaillées et points spécifiques du Territoire ${i}.`,
+        observation: "",
+        vueVerso: false
+    });
+}
+
 let indexSemaineActive = 0;
-let modeEdition = { sono: false, discours: false, nettoyage: false, vem: false };
+let modeEdition = { sono: false, discours: false, nettoyage: false, vem: false, territoires: false };
 
 window.changerPage = function(page) {
     if (page === 'accueil') afficherAccueil();
@@ -258,14 +273,16 @@ window.changerPage = function(page) {
     if (page === 'discours') afficherDiscours();
     if (page === 'nettoyage') afficherNettoyage();
     if (page === 'vem') afficherVem();
+    if (page === 'territoires') afficherTerritoires();
 };
 
-window.changerSemaine = function(index) {
-    indexSemaineActive = index;
-    afficherVem();
+window.changerSemaine = function(index) { indexSemaineActive = index; afficherVem(); };
+window.basculerRectoVerso = function(id) {
+    let t = donnéesTerritoires.find(item => item.id === id);
+    if (t) { t.vueVerso = !t.vueVerso; afficherTerritoires(); }
 };
 
-// --- LOGIQUES DE MODIFICATION ET ENREGISTREMENT ---
+// --- EMETTEURS LOGIQUES ET FONCTIONS DE SAUVEGARDE DE TOUTES LES RUBRIQUES ---
 window.basculerEditionVem = function() { modeEdition.vem = !modeEdition.vem; afficherVem(); };
 window.sauvegarderVem = function() {
     let sem = semainesVem[indexSemaineActive];
@@ -274,7 +291,20 @@ window.sauvegarderVem = function() {
     sem.joyaux.forEach((j, i) => { j.attribution = document.getElementById("j-" + i).value; });
     sem.ministere.forEach((m, i) => { m.attribution = document.getElementById("m-" + i).value; });
     sem.vie.forEach((v, i) => { v.attribution = document.getElementById("v-" + i).value; });
-    modeEdition.vem = false; alert("✅ Réunion enregistrée !"); afficherVem();
+    modeEdition.vem = false; alert("✅ Programme Vie et Ministère mis à jour !"); afficherVem();
+};
+
+window.basculerEditionTerritoires = function() { modeEdition.territoires = !modeEdition.territoires; afficherTerritoires(); };
+window.sauvegarderTerritoires = function() {
+    donnéesTerritoires.forEach((t) => {
+        let elProc = document.getElementById(`proc-${t.id}`);
+        let elDate = document.getElementById(`date-${t.id}`);
+        let elObs = document.getElementById(`obs-${t.id}`);
+        if (elProc) t.proclamateur = elProc.value;
+        if (elDate) t.dateAttribution = elDate.value;
+        if (elObs) t.observation = elObs.value;
+    });
+    modeEdition.territoires = false; alert("✅ Registre Territory Helper sauvegardé !"); afficherTerritoires();
 };
 
 window.basculerEditionNettoyage = function() { modeEdition.nettoyage = !modeEdition.nettoyage; afficherNettoyage(); };
@@ -311,7 +341,7 @@ window.sauvegarderDiscours = function() {
     modeEdition.discours = false; alert("✅ Discours mis à jour !"); afficherDiscours();
 };
 
-// --- DESIGN : TABLEAU DE BORD ACCUEIL ---
+// --- DESIGN GLOBAL ADAPTATIF MOBILE & IPAD (ACCUEIL) ---
 function afficherAccueil() {
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; margin:0; padding-bottom:30px;">
@@ -329,17 +359,20 @@ function afficherAccueil() {
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #f1c40f; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align:center;">
                 <h3>📖 Cahier Vie et Ministère</h3><button onclick="window.changerPage('vem')" style="width:100%; padding:12px; background:#f1c40f; color:#2c3e50; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
             </div>
+            <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align:center;">
+                <h3>🗺️ Territoires (Territory Helper)</h3><button onclick="window.changerPage('territoires')" style="width:100%; padding:12px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
+            </div>
         </div>
     </div>`;
 }
 
-// --- DESIGN : CAHIER VIE ET MINISTÈRE (ONGLETS DÉTAILLÉS) ---
+// --- DESIGN : CAHIER VIE ET MINISTÈRE ---
 function afficherVem() {
     let sem = semainesVem[indexSemaineActive];
     let boutonsSemaines = "";
     semainesVem.forEach((s, idx) => {
         let actif = idx === indexSemaineActive ? "background:#2c3e50; color:white;" : "background:white; color:#2c3e50;";
-        boutonsSemaines += `<button onclick="window.changerSemaine(${idx})" style="padding:10px 12px; margin:4px; border:1px solid #2c3e50; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px; ${actif}">${s.titre.split(" | ")[0]}</button>`;
+        boutonsSemaines += `<button onclick="window.changerSemaine(${idx})" style="padding:10px 11px; margin:4px; border:1px solid #2c3e50; border-radius:4px; cursor:pointer; font-weight:bold; font-size:12px; ${actif}">${s.titre.split(" | ")[0]}</button>`;
     });
 
     let genererLignes = (tableau, prefixe) => {
@@ -365,25 +398,19 @@ function afficherVem() {
                 <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; cursor:pointer; background:white; color:#2c3e50; border:1px solid #2c3e50; border-radius:4px; font-weight:bold; margin-left:5px; font-size:13px;">Accueil</button>
             </div>
         </nav>
-
         <div style="max-width: 95%; margin: 15px auto;">
             <div style="margin-bottom:15px; display:flex; flex-wrap:wrap; justify-content:center;">${boutonsSemaines}</div>
-            
             <div style="background:white; padding:20px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
                 <h3 style="color:#2c3e50; margin-top:0; border-bottom:3px solid #f1c40f; padding-bottom:8px; text-align:center; font-size:16px;">${sem.titre}</h3>
-                
                 <div style="background:#f8f9fa; padding:12px; border-radius:6px; margin-bottom:20px; display:flex; flex-direction:column; gap:6px; font-size:13px; border-left: 4px solid #f1c40f;">
                     <div><strong>🎵 Cantique d'ouverture :</strong> ${sem.intro.cantique}</div>
                     <div><strong>👔 Président :</strong> ${modeEdition.vem ? `<input id="edit-pres" value="${sem.intro.president}">` : sem.intro.president}</div>
                     <div><strong>🙏 Prière :</strong> ${modeEdition.vem ? `<input id="edit-priere" value="${sem.intro.priere}">` : sem.intro.priere}</div>
                 </div>
-
                 <h4 style="color:#2980b9; margin-bottom:10px; border-bottom:1px solid #2980b9; padding-bottom:5px; font-size:14px;">💎 JOYAUX DE LA PAROLE</h4>
                 ${genererLignes(sem.joyaux, "j")}
-
                 <h4 style="color:#c0392b; margin-top:25px; margin-bottom:10px; border-bottom:1px solid #c0392b; padding-bottom:5px; font-size:14px;">🏃 APPLIQUE-TOI AU MINISTÈRE</h4>
                 ${genererLignes(sem.ministere, "m")}
-
                 <h4 style="color:#27ae60; margin-top:25px; margin-bottom:10px; border-bottom:1px solid #27ae60; padding-bottom:5px; font-size:14px;">🧼 VIE CHRÉTIENNE</h4>
                 ${genererLignes(sem.vie, "v")}
             </div>
@@ -391,7 +418,7 @@ function afficherVem() {
     </div>`;
 }
 
-// --- DESIGN : DISCOURS PUBLICS COMPLET ---
+// --- DESIGN : DISCOURS PUBLICS ---
 function afficherDiscours() {
     let lignes = "";
     donnéesDiscours.forEach((l, i) => {
@@ -407,14 +434,14 @@ function afficherDiscours() {
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:30px;">
         <nav style="background: #e67e22; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-            <h2 style="margin:0; font-size:18px;">🎤 Discours Publics</h2>
+            <h2 style="margin:0; font-size:18px;">🎤 Discours Publics 2026</h2>
             <div>
                 <button onclick="${modeEdition.discours ? 'window.sauvegarderDiscours()' : 'window.basculerEditionDiscours()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.discours ? '💾 Sauver' : '✏️ Modifier'}</button>
                 <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
             </div>
         </nav>
         <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
-            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 700px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 750px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                 <tr style="background: #2c3e50; color: white; text-align: left;"><th style="padding:10px;">Date</th><th>Thème</th><th>Orateur</th><th>Président</th><th>Lecteur</th></tr>
                 ${lignes}
             </table>
@@ -422,16 +449,17 @@ function afficherDiscours() {
     </div>`;
 }
 
-// --- DESIGN : SONORISATION COMPLÈTE ---
+// --- DESIGN : SONORISATION & ESTRADE ---
 function afficherSonorisation() {
     let lignes = "";
     donnéesProgramme.forEach((l, i) => {
-        lignes += `<tr style="border-bottom: 1px solid #eee;">
+        let styleLigne = l.special === "OUI" ? "background-color: #fcf3cf; font-weight: bold;" : "";
+        lignes += `<tr style="border-bottom: 1px solid #eee; ${styleLigne}">
             <td style="padding: 10px;">${modeEdition.sono ? `<input id="as-${i}" value="${l.audio}">` : l.audio}</td>
-            <td style="padding: 10px;">${modeEdition.sono ? `<input id="zs-${i}" value="${l.zoom}">` : l.zoom}</td>
-            <td style="padding: 10px;">${modeEdition.sono ? `<input id="es-${i}" value="${l.estrade}">` : l.estrade}</td>
-            <td style="padding: 10px;">${modeEdition.sono ? `<input id="ms-${i}" value="${l.mardi}">` : l.mardi}</td>
-            <td style="padding: 10px;">${modeEdition.sono ? `<input id="ss-${i}" value="${l.samedi}">` : l.samedi}</td>
+            <td style="padding: 10px;">${l.special === "OUI" ? "-" : (modeEdition.sono ? `<input id="zs-${i}" value="${l.zoom}">` : l.zoom)}</td>
+            <td style="padding: 10px;">${l.special === "OUI" ? "-" : (modeEdition.sono ? `<input id="es-${i}" value="${l.estrade}">` : l.estrade)}</td>
+            <td style="padding: 10px; font-weight:500;">${modeEdition.sono ? `<input id="ms-${i}" value="${l.mardi}">` : l.mardi}</td>
+            <td style="padding: 10px; font-weight:500;">${modeEdition.sono ? `<input id="ss-${i}" value="${l.samedi}">` : l.samedi}</td>
         </tr>`;
     });
     document.body.innerHTML = `
@@ -444,7 +472,7 @@ function afficherSonorisation() {
             </div>
         </nav>
         <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
-            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 600px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 650px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                 <tr style="background: #2c3e50; color: white; text-align: left;"><th style="padding:10px;">Audio</th><th>Zoom</th><th>Estrade</th><th>Mardi</th><th>Samedi</th></tr>
                 ${lignes}
             </table>
@@ -452,30 +480,95 @@ function afficherSonorisation() {
     </div>`;
 }
 
-// --- DESIGN : NETTOYAGE COMPLET ---
+// --- DESIGN : NETTOYAGE SULPHATE ---
 function afficherNettoyage() {
     let lignes = "";
     donnéesNettoyage.forEach((l, i) => {
-        lignes += `<tr style="border-bottom: 1px solid #eee;">
+        let styleLigne = l.special === "OUI" ? "background-color: #e8f8f5; font-weight: bold; color: #117a65;" : "";
+        lignes += `<tr style="border-bottom: 1px solid #eee; ${styleLigne}">
             <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="gn-${i}" value="${l.groupe}">` : l.groupe}</td>
             <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="mn-${i}" value="${l.mardi}">` : l.mardi}</td>
-            <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="sn-${i}" value="${l.samedi}">` : l.samedi}</td>
+            <td style="padding: 12px;">${l.special === "OUI" ? "-" : (modeEdition.nettoyage ? `<input id="sn-${i}" value="${l.samedi}">` : l.samedi)}</td>
         </tr>`;
     });
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:30px;">
         <nav style="background: #2ecc71; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
-            <h2 style="margin:0; font-size:18px;">🧼 Nettoyage de la Salle</h2>
+            <h2 style="margin:0; font-size:18px;">🧼 Programme de Nettoyage</h2>
             <div>
                 <button onclick="${modeEdition.nettoyage ? 'window.sauvegarderNettoyage()' : 'window.basculerEditionNettoyage()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.nettoyage ? '💾 Sauver' : '✏️ Modifier'}</button>
                 <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
             </div>
         </nav>
         <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
-            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 500px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 550px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                 <tr style="background: #2c3e50; color: white; text-align: left;"><th style="padding:12px;">Groupes</th><th>Mardi</th><th>Samedi</th></tr>
                 ${lignes}
             </table>
+        </div>
+    </div>`;
+}
+
+// --- DESIGN DE LA GESTION ET COMPATIBILITÉ DU MODULE TERRITOIRES (120 CARTES) ---
+function afficherTerritoires() {
+    let cartesHtml = donnéesTerritoires.map(t => {
+        let dateEcheance = "";
+        if (t.dateAttribution) {
+            let d = new Date(t.dateAttribution);
+            d.setMonth(d.getMonth() + 3);
+            dateEcheance = d.toLocaleDateString('fr-FR');
+        }
+        return `
+        <div style="background: white; border-radius: 8px; border: 1px solid #d6dbdf; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden;">
+            <div style="background: #3498db; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 15px;">Carte N° ${t.id}</strong>
+                <span style="font-size: 11px; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">${t.zone}</span>
+            </div>
+            <div style="padding: 12px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px;">
+                <div style="background: #f8f9fa; padding: 8px; border-radius: 6px; font-size: 12px; border-left: 3px solid #2ecc71;">
+                    <div style="margin-bottom: 4px;"><strong>Attribué à (3 mois) :</strong></div>
+                    ${modeEdition.territoires ? 
+                        `<input id="proc-${t.id}" value="${t.proclamateur}" placeholder="Nom & Prénom" style="width:100%; padding:4px; font-size:12px; margin-bottom:5px;">` : 
+                        `<div style="font-size:14px; font-weight:bold; color:#2c3e50;">${t.proclamateur || "Disponible"}</div>`
+                    }
+                    <div style="margin-top: 4px; display:flex; justify-content:space-between; font-size:11px; gap:5px; align-items:center;">
+                        <div>Sortie: ${modeEdition.territoires ? `<input type="date" id="date-${t.id}" value="${t.dateAttribution}" style="font-size:11px;">` : (t.dateAttribution ? new Date(t.dateAttribution).toLocaleDateString('fr-FR') : "-")}</div>
+                        ${t.dateAttribution ? `<div style="color:#e67e22; font-weight:bold;">Échéance: ${dateEcheance}</div>` : ""}
+                    </div>
+                </div>
+                <div style="border: 1px dashed #b2babb; padding: 10px; border-radius: 6px; font-size: 13px; background: #fefefe; min-height: 55px;">
+                    <div style="font-weight: bold; color: #7f8c8d; font-size: 11px; margin-bottom: 4px; text-transform: uppercase;">
+                        📍 ${t.vueVerso ? "Détails Verso (Rues)" : "Vue Recto (Secteur)"}
+                    </div>
+                    <div>${t.vueVerso ? t.verso : t.recto}</div>
+                </div>
+                <button onclick="window.basculerRectoVerso(${t.id})" style="width: 100%; padding: 6px; background: #f2f4f4; border: 1px solid #bdc3c7; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; color: #34495e;">
+                    🔄 Retourner la carte (Recto/Verso)
+                </button>
+                <div style="font-size: 12px;">
+                    <label style="font-weight: bold; color: #7f8c8d;">Observations :</label>
+                    ${modeEdition.territoires ? 
+                        `<textarea id="obs-${t.id}" style="width:100%; box-sizing:border-box; padding:4px; font-size:12px; margin-top:3px; height:40px;">${t.observation}</textarea>` : 
+                        `<div style="background:#fff9c4; padding:6px; border-radius:4px; margin-top:3px; font-style:italic; min-height:20px; color:#5d6d7e;">${t.observation || "Aucune note."}</div>`
+                    }
+                </div>
+            </div>
+        </div>`;
+    }).join("");
+
+    document.body.innerHTML = `
+    <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:40px;">
+        <nav style="background: #3498db; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+            <h2 style="margin:0; font-size:18px;">🗺️ Territory Helper - 120 Cartes</h2>
+            <div>
+                <button onclick="${modeEdition.territoires ? 'window.sauvegarderTerritoires()' : 'window.basculerEditionTerritoires()'}" style="padding: 6px 12px; cursor:pointer; font-weight:bold; background:#2c3e50; color:white; border:none; border-radius:4px; font-size:13px;">
+                    ${modeEdition.territoires ? '💾 Sauver Attributions' : '✏️ Gérer Sorties (3 mois)'}
+                </button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; cursor:pointer; background:white; color:#3498db; border:1px solid white; border-radius:4px; font-weight:bold; margin-left:5px; font-size:13px;">Accueil</button>
+            </div>
+        </nav>
+        <div style="max-width: 98%; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 5px;">
+            ${cartesHtml}
         </div>
     </div>`;
 }
