@@ -22,7 +22,7 @@ let donnéesDiscours = [
     { date: "28/06/2026", president: "Ludovic", orateur: "Widney", theme: "Pourquoi suivre les principes de la Bible ?" }
 ];
 
-// --- 3. DONNÉES NETTOYAGE COMPLET ---
+// --- 3. DONNÉES NETTOYAGE ---
 let donnéesNettoyage = [
     { groupe: "Benony", mardi: "21/04/26", samedi: "25/04/26", special: "" },
     { groupe: "Gilles", mardi: "28/04/26", samedi: "02/05/26", special: "" },
@@ -63,7 +63,7 @@ let donnéesNettoyage = [
     { groupe: "Lognos", mardi: "29/12/26", samedi: "03/01/27", special: "" }
 ];
 
-// --- 4. DONNÉES CAHIER VIE ET MINISTÈRE (TON TABLEAU DE JUILLET À SEPTEMBRE) ---
+// --- 4. DONNÉES CAHIER VIE ET MINISTÈRE ---
 let donnéesVieEtMinistere = [
     { date: "07/07/2026", president: "Ludovic MANNETIER", joyaux: "Widney ZIG", perles: "Christian BENONY", lecture: "Iréné ULCE" },
     { date: "14/07/2026", president: "Thierry GILLES", joyaux: "Thierry GILLES", perles: "Fredy MAMBOLE", lecture: "Jean-Louis" },
@@ -86,15 +86,15 @@ window.changerPage = function(page) {
     if (page === 'vem') afficherVem();
 };
 
-// --- EMETTEURS LOGIQUES DE SAUVEGARDE ET ACTIONS EDIT ---
+// --- LOGIQUES DE SAUVEGARDE ---
 window.basculerEditionVem = function() { modeEdition.vem = !modeEdition.vem; afficherVem(); };
 window.sauvegarderVem = function() {
     donnéesVieEtMinistere.forEach((l, i) => {
-        l.date = document.getElementById(`vd-${i}`).value;
-        l.president = document.getElementById(`vp-${i}`).value;
-        l.joyaux = document.getElementById(`vj-${i}`).value;
-        l.perles = document.getElementById(`vpe-${i}`).value;
-        l.lecture = document.getElementById(`vl-${i}`).value;
+        l.date = document.getElementById("vd-" + i).value;
+        l.president = document.getElementById("vp-" + i).value;
+        l.joyaux = document.getElementById("vj-" + i).value;
+        l.perles = document.getElementById("vpe-" + i).value;
+        l.lecture = document.getElementById("vl-" + i).value;
     });
     modeEdition.vem = false; alert("✅ Programme Vie et Ministère mis à jour !"); afficherVem();
 };
@@ -102,9 +102,9 @@ window.sauvegarderVem = function() {
 window.basculerEditionNettoyage = function() { modeEdition.nettoyage = !modeEdition.nettoyage; afficherNettoyage(); };
 window.sauvegarderNettoyage = function() {
     donnéesNettoyage.forEach((l, i) => {
-        l.groupe = document.getElementById(`g-${i}`).value;
-        l.mardi = document.getElementById(`m-${i}`).value;
-        if (l.special !== "OUI") l.samedi = document.getElementById(`s-${i}`).value;
+        l.groupe = document.getElementById("g-" + i).value;
+        l.mardi = document.getElementById("m-" + i).value;
+        if (l.special !== "OUI") l.samedi = document.getElementById("s-" + i).value;
     });
     modeEdition.nettoyage = false; alert("✅ Nettoyage mis à jour !"); afficherNettoyage();
 };
@@ -112,9 +112,9 @@ window.sauvegarderNettoyage = function() {
 window.basculerEditionSono = function() { modeEdition.sono = !modeEdition.sono; afficherSonorisation(); };
 window.sauvegarderSono = function() {
     donnéesProgramme.forEach((l, i) => {
-        l.audio = document.getElementById(`audio-${i}`).value;
-        l.mardi = document.getElementById(`msono-${i}`).value;
-        l.samedi = document.getElementById(`ssono-${i}`).value;
+        l.audio = document.getElementById("audio-" + i).value;
+        l.mardi = document.getElementById("msono-" + i).value;
+        l.samedi = document.getElementById("ssono-" + i).value;
     });
     modeEdition.sono = false; alert("✅ Sonorisation mise à jour !"); afficherSonorisation();
 };
@@ -122,15 +122,15 @@ window.sauvegarderSono = function() {
 window.basculerEditionDiscours = function() { modeEdition.discours = !modeEdition.discours; afficherDiscours(); };
 window.sauvegarderDiscours = function() {
     donnéesDiscours.forEach((l, i) => {
-        l.date = document.getElementById(`date-${i}`).value;
-        l.president = document.getElementById(`pres-${i}`).value;
-        l.orateur = document.getElementById(`orat-${i}`).value;
-        l.theme = document.getElementById(`theme-${i}`).value;
+        l.date = document.getElementById("date-" + i).value;
+        l.president = document.getElementById("pres-" + i).value;
+        l.orateur = document.getElementById("orat-" + i).value;
+        l.theme = document.getElementById("theme-" + i).value;
     });
     modeEdition.discours = false; alert("✅ Discours mis à jour !"); afficherDiscours();
 };
 
-// --- TABLEAU DE BORD (ACCUEIL) ---
+// --- ACCUEIL ---
 function afficherAccueil() {
     document.body.innerHTML = `
     <div style="font-family: 'Segoe UI', sans-serif; background: #f4f6f9; min-height: 100vh; margin:0;">
@@ -152,7 +152,7 @@ function afficherAccueil() {
     </div>`;
 }
 
-// --- RENDU CAHIER VIE ET MINISTÈRE ---
+// --- RENDU VIE ET MINISTÈRE ---
 function afficherVem() {
     let lignes = "";
     donnéesVieEtMinistere.forEach((l, i) => {
@@ -186,15 +186,15 @@ function afficherVem() {
     </div>`;
 }
 
-// --- RENDU NETTOYAGE (INTEGRAL JUSQU'A DECEMBRE) ---
+// --- RENDU NETTOYAGE ---
 function afficherNettoyage() {
     let lignes = "";
     donnéesNettoyage.forEach((l, i) => {
         let styleLigne = l.special === "OUI" ? "background-color: #e8f8f5; font-weight: bold; color: #117a65;" : "";
-        lignes += `<tr style="border-bottom: 1px solid #eee; \${styleLigne}">
-            <td style="padding: 12px;">\${modeEdition.nettoyage ? `<input id="g-\${i}" value="\${l.groupe}" style="width:90%">` : l.groupe}</td>
-            <td style="padding: 12px;">\${modeEdition.nettoyage ? `<input id="m-\${i}" value="\${l.mardi}" style="width:90%">` : l.mardi}</td>
-            <td style="padding: 12px;">\${l.special === "OUI" ? "-" : (modeEdition.nettoyage ? `<input id="s-\${i}" value="\${l.samedi}" style="width:90%">` : l.samedi)}</td>
+        lignes += `<tr style="border-bottom: 1px solid #eee; ${styleLigne}">
+            <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="g-${i}" value="${l.groupe}" style="width:90%">` : l.groupe}</td>
+            <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="m-${i}" value="${l.mardi}" style="width:90%">` : l.mardi}</td>
+            <td style="padding: 12px;">${l.special === "OUI" ? "-" : (modeEdition.nettoyage ? `<input id="s-${i}" value="${l.samedi}" style="width:90%">` : l.samedi)}</td>
         </tr>`;
     });
     document.body.innerHTML = `
@@ -202,7 +202,7 @@ function afficherNettoyage() {
         <nav style="background: #2ecc71; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
             <h2 style="margin:0">🧼 Programme de Nettoyage</h2>
             <div>
-                <button onclick="\${modeEdition.nettoyage ? 'window.sauvegarderNettoyage()' : 'window.basculerEditionNettoyage()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold;">\${modeEdition.nettoyage ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="${modeEdition.nettoyage ? 'window.sauvegarderNettoyage()' : 'window.basculerEditionNettoyage()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold;">${modeEdition.nettoyage ? '💾 Sauver' : '✏️ Modifier'}</button>
                 <button onclick="window.changerPage('accueil')" style="padding: 8px 15px; cursor:pointer;">Accueil</button>
             </div>
         </nav>
@@ -211,7 +211,7 @@ function afficherNettoyage() {
                 <tr style="background: #2c3e50; color: white; text-align: left;">
                     <th style="padding: 12px;">Groupes</th><th style="padding: 12px;">Mardi</th><th style="padding: 12px;">Samedi</th>
                 </tr>
-                \${lignes}
+                ${lignes}
             </table>
         </div>
     </div>`;
@@ -222,12 +222,12 @@ function afficherSonorisation() {
     let lignes = "";
     donnéesProgramme.forEach((l, i) => {
         let styleLigne = l.special === "OUI" ? "background-color: #fcf3cf; font-weight: bold;" : "";
-        lignes += `<tr style="border-bottom: 1px solid #eee; \${styleLigne}">
-            <td style="padding: 10px;">\${modeEdition.sono ? `<input id="audio-\\\${i}" value="\${l.audio}" style="width:90%">` : l.audio}</td>
-            <td style="padding: 10px;">\${l.special === "OUI" ? "-" : (modeEdition.sono ? `<input id="z-\${i}" value="\${l.zoom}" style="width:90%">` : l.zoom)}</td>
-            <td style="padding: 10px;">\${l.special === "OUI" ? "-" : (modeEdition.sono ? `<input id="e-\${i}" value="\${l.estrade}" style="width:90%">` : l.estrade)}</td>
-            <td style="padding: 10px; font-weight: 500;">\${modeEdition.sono ? `<input id="msono-\${i}" value="\${l.mardi}" style="width:90%">` : l.mardi}</td>
-            <td style="padding: 10px; font-weight: 500;">\${modeEdition.sono ? `<input id="ssono-\${i}" value="\${l.samedi}" style="width:90%">` : l.samedi}</td>
+        lignes += `<tr style="border-bottom: 1px solid #eee; ${styleLigne}">
+            <td style="padding: 10px;">${modeEdition.sono ? `<input id="audio-${i}" value="${l.audio}" style="width:90%">` : l.audio}</td>
+            <td style="padding: 10px;">${l.special === "OUI" ? "-" : (modeEdition.sono ? `<input id="z-${i}" value="${l.zoom}" style="width:90%">` : l.zoom)}</td>
+            <td style="padding: 10px;">${l.special === "OUI" ? "-" : (modeEdition.sono ? `<input id="e-${i}" value="${l.estrade}" style="width:90%">` : l.estrade)}</td>
+            <td style="padding: 10px; font-weight: 500;">${modeEdition.sono ? `<input id="msono-${i}" value="${l.mardi}" style="width:90%">` : l.mardi}</td>
+            <td style="padding: 10px; font-weight: 500;">${modeEdition.sono ? `<input id="ssono-${i}" value="${l.samedi}" style="width:90%">` : l.samedi}</td>
         </tr>`;
     });
     document.body.innerHTML = `
@@ -235,7 +235,7 @@ function afficherSonorisation() {
         <nav style="background: #9b59b6; color: white; padding: 15px; display: flex; justify-content: space-between;">
             <h2 style="margin:0">🔊 Programme Sonorisation & Estrade 2026</h2>
             <div>
-                <button onclick="\${modeEdition.sono ? 'window.sauvegarderSono()' : 'window.basculerEditionSono()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold;">\${modeEdition.sono ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="${modeEdition.sono ? 'window.sauvegarderSono()' : 'window.basculerEditionSono()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold;">${modeEdition.sono ? '💾 Sauver' : '✏️ Modifier'}</button>
                 <button onclick="window.changerPage('accueil')" style="padding: 8px 15px; cursor:pointer;">Accueil</button>
             </div>
         </nav>
@@ -244,7 +244,7 @@ function afficherSonorisation() {
                 <tr style="background: #2c3e50; color: white; text-align: left;">
                     <th style="padding: 10px;">Audio-Vidéo</th><th style="padding: 10px;">Accueil Zoom</th><th style="padding: 10px;">Estrade</th><th style="padding: 10px;">Mardi</th><th style="padding: 10px;">Samedi</th>
                 </tr>
-                \${lignes}
+                ${lignes}
             </table>
         </div>
     </div>`;
@@ -255,10 +255,10 @@ function afficherDiscours() {
     let lignes = "";
     donnéesDiscours.forEach((l, i) => {
         lignes += `<tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px; font-weight:bold;">\${modeEdition.discours ? `<input id="date-\${i}" value="\${l.date}" style="width:90%">` : l.date}</td>
-            <td style="padding: 12px;">\${modeEdition.discours ? `<input id="pres-\\\${i}" value="\${l.president}" style="width:90%">` : l.president}</td>
-            <td style="padding: 12px;">\${modeEdition.discours ? `<input id="orat-\${i}" value="\${l.orateur}" style="width:90%">` : l.orateur}</td>
-            <td style="padding: 12px; color: #2c3e50;">\${modeEdition.discours ? `<input id="theme-\${i}" value="\${l.theme}" style="width:95%">` : l.theme}</td>
+            <td style="padding: 12px; font-weight:bold;">${modeEdition.discours ? `<input id="date-${i}" value="${l.date}" style="width:90%">` : l.date}</td>
+            <td style="padding: 12px;">${modeEdition.discours ? `<input id="pres-${i}" value="${l.president}" style="width:90%">` : l.president}</td>
+            <td style="padding: 12px;">${modeEdition.discours ? `<input id="orat-${i}" value="${l.orateur}" style="width:90%">` : l.orateur}</td>
+            <td style="padding: 12px; color: #2c3e50;">${modeEdition.discours ? `<input id="theme-${i}" value="${l.theme}" style="width:95%">` : l.theme}</td>
         </tr>`;
     });
     document.body.innerHTML = `
@@ -266,7 +266,7 @@ function afficherDiscours() {
         <nav style="background: #e67e22; color: white; padding: 15px; display: flex; justify-content: space-between;">
             <h2 style="margin:0">🎤 Programme des Discours</h2>
             <div>
-                <button onclick="\${modeEdition.discours ? 'window.sauvegarderDiscours()' : 'window.basculerEditionDiscours()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold;">\${modeEdition.discours ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="${modeEdition.discours ? 'window.sauvegarderDiscours()' : 'window.basculerEditionDiscours()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold;">${modeEdition.discours ? '💾 Sauver' : '✏️ Modifier'}</button>
                 <button onclick="window.changerPage('accueil')" style="padding: 8px 15px; cursor:pointer;">Accueil</button>
             </div>
         </nav>
@@ -275,7 +275,7 @@ function afficherDiscours() {
                 <tr style="background: #2c3e50; color: white; text-align: left;">
                     <th style="padding: 12px;">Date</th><th style="padding: 12px;">Président</th><th style="padding: 12px;">Orateur</th><th style="padding: 12px;">Thème du Discours</th>
                 </tr>
-                \${lignes}
+                ${lignes}
             </table>
         </div>
     </div>`;
