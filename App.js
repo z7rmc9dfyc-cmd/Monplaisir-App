@@ -1,4 +1,4 @@
-// --- 1. DONNÉES COMPLÈTES VIE ET MINISTÈRE (TEXTE DES PDF) ---
+// --- 1. DONNÉES COMPLÈTES VIE ET MINISTÈRE ---
 let semainesVem = [
     {
         titre: "07/07/2026 | JÉRÉMIE 13-15",
@@ -42,7 +42,7 @@ let semainesVem = [
         titre: "21/07/2026 | JÉRÉMIE 18-19",
         intro: { cantique: "44", priere: "Thierry GILLES", president: "Thierry GILLES" },
         joyaux: [
-            { temps: "18:36", titre: "1. La guérison spirituelle est toujours possible (10 min.)", attribution: "Freddy MAMBOLE" },
+            { temps: "18:36", titre: "1. La guérison spirituelle is toujours possible (10 min.)", attribution: "Freddy MAMBOLE" },
             { temps: "18:46", titre: "2. Perles spirituelles JÉRÉMIE 18-19 (10 min.)", attribution: "André SIBA" },
             { temps: "18:56", titre: "3. Lecture de la Bible (4 min.)", attribution: "Malick TORVAL" }
         ],
@@ -174,33 +174,79 @@ let semainesVem = [
     }
 ];
 
-// --- 2. DONNÉES DISCOURS PUBLICS COMPLETES ---
+// --- 2. DONNÉES COMPLÈTES DISCOURS PUBLICS ---
 let donnéesDiscours = [
-    { date: "02/04/2026", theme: "MÉMORIAL : Notre reconnaissance", num: "-", orateur: "ZIG Widney", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "-", groupe: "-", special: "OUI" },
-    { date: "04/04/2026", theme: "La pensée de Dieu sur le mariage", num: "13", orateur: "HILAIRE Claude", assemblee: "POINTE NOIRE", pres: "BENONY Christian", lecteur: "LOGNOS Nicolas", groupe: "ZIG" },
+    { date: "02/04/2026", theme: "MÉMORIAL : Notre reconnaissance pour Dieu et le Christ", num: "-", orateur: "ZIG Widney", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "-", groupe: "-", special: "OUI" },
+    { date: "04/04/2026", theme: "La pensée de Dieu sur le mariage et la sexualité", num: "13", orateur: "HILAIRE Claude", assemblee: "POINTE NOIRE", pres: "BENONY Christian", lecteur: "LOGNOS Nicolas", groupe: "ZIG" },
     { date: "11/04/2026", theme: "Comment vaincre le mal par le bien", num: "117", orateur: "LOGNOS Nicolas", assemblee: "GOYAVE", pres: "MAMBOL Freddy", lecteur: "ZIG Widney", groupe: "-" },
-    { date: "18/04/2026", theme: "Avez-vous trouvé une 'perle' ?", num: "24", orateur: "AÏELLO Salvator", assemblee: "VERNOU", pres: "ASTASIE Roland", lecteur: "DANICAN Cédric", groupe: "Benony" },
-    { date: "02/05/2026", theme: "Vivons avec bon sens", num: "138", orateur: "POMMIER Gane", assemblee: "ST CLAUDE", pres: "ZIG Widney", lecteur: "LYCAON Luc", groupe: "MAMBOL" },
-    { date: "09/05/2026", theme: "Jéhovah est une 'hauteur sûre'", num: "151", orateur: "MAMBOL Freddy", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "MANNETIER Ludovic", groupe: "MAMBOL" },
+    { date: "18/04/2026", theme: "Avez-vous trouvé une 'perle de grande valeur' ?", num: "24", orateur: "AÏELLO Salvator", assemblee: "VERNOU", pres: "ASTASIE Roland", lecteur: "DANICAN Cédric", groupe: "Benony" },
+    { date: "25/04/2026", theme: "RÉUNION SPÉCIALE", num: "-", orateur: "-", assemblee: "-", pres: "-", lecteur: "-", groupe: "-", special: "OUI" },
+    { date: "02/05/2026", theme: "Vivons avec bon sens au sein d'un monde dépravé", num: "138", orateur: "POMMIER Gane", assemblee: "ST CLAUDE", pres: "ZIG Widney", lecteur: "LYCAON Luc", groupe: "MAMBOL" },
+    { date: "09/05/2026", theme: "Jéhovah est une 'hauteur sûre' pour son peuple", num: "151", orateur: "MAMBOL Freddy", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "MANNETIER Ludovic", groupe: "MAMBOL" },
     { date: "16/05/2026", theme: "Quel est votre but dans la vie ?", num: "60", orateur: "FERDY Sitcharn", assemblee: "POINTE NOIRE", pres: "GILLES Thierry", lecteur: "MELGAR Olivier", groupe: "GILLES" },
-    { date: "23/05/2026", theme: "Où trouver de l'aide ?", num: "177", orateur: "LANDAIS ELIE", assemblee: "CAPESTERRE SUD", pres: "MANNETIER Ludovic", lecteur: "JOURSON Victor", groupe: "LOGNOS" },
-    { date: "30/05/2026", theme: "Marchez-vous avec Dieu ?", num: "149", orateur: "ADHEL Gilbert", assemblee: "GOYAVE", pres: "SIBA André", lecteur: "BENONY Christian", groupe: "-" }
+    { date: "23/05/2026", theme: "Où trouver de l'aide dans les temps de détresse ?", num: "177", orateur: "LANDAIS ELIE", assemblee: "CAPESTERRE SUD", pres: "MANNETIER Ludovic", lecteur: "JOURSON Victor", groupe: "LOGNOS" },
+    { date: "30/05/2026", theme: "Marchez-vous avec Dieu ?", num: "149", orateur: "ADHEL Gilbert", assemblee: "GOYAVE", pres: "SIBA André", lecteur: "BENONY Christian", groupe: "-" },
+    { date: "06/06/2026", theme: "SEMAINE SPÉCIALE - Comment récolter la vie éternelle ?", num: "-", orateur: "GALTIER Ludovic", assemblee: "-", pres: "CASI Daniel", lecteur: "-", groupe: "-", special: "OUI" },
+    { date: "13/06/2026", theme: "Pourquoi craindre le vrai Dieu ?", num: "163", orateur: "BENONY Christian", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "ADHEL Gilbert", groupe: "-" },
+    { date: "20/06/2026", theme: "La death est-elle la fin de tout ?", num: "184", orateur: "ASTASIE Roland", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "GILLES Thierry", groupe: "-" },
+    { date: "27/06/2026", theme: "Utilisons l'instruction pour louer Jéhovah", num: "146", orateur: "BUJADINOVIC Erick", assemblee: "POINTE NOIRE", pres: "LOGNOS Nicolas", lecteur: "CASI Daniel", groupe: "MANNETIER" }
 ];
 
-// --- 3. DONNÉES SONORISATION ---
+// --- 3. DONNÉES COMPLÈTES SONORISATION ---
 let donnéesProgramme = [
-    { audio: "Malick", zoom: "Fredy", estrade: "Thierry", perchistes: "Luc / José", mardi: "26/05/2026", samedi: "30/05/2026" },
-    { audio: "Widney", zoom: "Victor", estrade: "Luc", perchistes: "Malick / Fredy", mardi: "02/06/2026", samedi: "06/06/2026" },
-    { audio: "Thierry", zoom: "Gilbert", estrade: "Daniel", perchistes: "Iréné / Olivier", mardi: "09/06/2026", samedi: "13/06/2026" }
+    { audio: "Malick", zoom: "Fredy", estrade: "Thierry", perchistes: "Luc / José", mardi: "26/05/2026", samedi: "30/05/2026", special: "" },
+    { audio: "Widney", zoom: "Victor", estrade: "Luc", perchistes: "Malick / Fredy", mardi: "02/06/2026", samedi: "06/06/2026", special: "" },
+    { audio: "Semaine Spéciale", zoom: "", estrade: "", perchistes: "", mardi: "02/06/2026", samedi: "07/06/2026", special: "OUI" },
+    { audio: "Thierry", zoom: "Gilbert", estrade: "Daniel", perchistes: "Iréné / Olivier", mardi: "09/06/2026", samedi: "13/06/2026", special: "" },
+    { audio: "Rolland", zoom: "Ludovic", estrade: "Fredy", perchistes: "Jean Louis / Luc", mardi: "16/06/2026", samedi: "20/06/2026", special: "" },
+    { audio: "Ludovic", zoom: "Malick", estrade: "Widney", perchistes: "Luc / Olivier", mardi: "23/06/2026", samedi: "27/06/2026", special: "" },
+    { audio: "Assemblée Régionale", zoom: "", estrade: "", perchistes: "", mardi: "03/07/2026", samedi: "05/07/2026", special: "OUI" },
+    { audio: "Widney", zoom: "Gilbert", estrade: "Luc", perchistes: "Daniel / Malick", mardi: "07/07/2026", samedi: "11/07/2026", special: "" },
+    { audio: "Thierry", zoom: "Luc", estrade: "Daniel", perchistes: "Fredy / victor", mardi: "14/07/2026", samedi: "18/07/2026", special: "" },
+    { audio: "Rolland", zoom: "Victor", estrade: "Widney", perchistes: "Iréné / Luc", mardi: "21/07/2026", samedi: "25/07/2026", special: "" },
+    { audio: "Malick", zoom: "Fredy", estrade: "Thierry", perchistes: "Victor / Christian", mardi: "28/07/2026", samedi: "01/08/2026", special: "" },
+    { audio: "Victor", zoom: "Thierry", estrade: "Fredy", perchistes: "Jean Louis / Olivier", mardi: "04/08/2026", samedi: "08/08/2026", special: "" }
 ];
 
-// --- 4. DONNÉES NETTOYAGE ---
+// --- 4. DONNÉES COMPLÈTES NETTOYAGE ---
 let donnéesNettoyage = [
-    { groupe: "Benony", mardi: "21/04/26", samedi: "25/04/26" },
-    { groupe: "Gilles", mardi: "28/04/26", samedi: "02/05/26" },
-    { groupe: "Zig", mardi: "05/05/26", samedi: "09/05/26" },
-    { groupe: "Lognos", mardi: "12/05/26", samedi: "16/05/26" },
-    { groupe: "Mambole", mardi: "19/05/26", samedi: "23/05/26" }
+    { groupe: "Benony", mardi: "21/04/26", samedi: "25/04/26", special: "" },
+    { groupe: "Gilles", mardi: "28/04/26", samedi: "02/05/26", special: "" },
+    { groupe: "Zig", mardi: "05/05/26", samedi: "09/05/26", special: "" },
+    { groupe: "Lognos", mardi: "12/05/26", samedi: "16/05/26", special: "" },
+    { groupe: "Mambole", mardi: "19/05/26", samedi: "23/05/26", special: "" },
+    { groupe: "Astasie", mardi: "26/05/26", samedi: "30/05/26", special: "" },
+    { groupe: "Manetier", mardi: "02/06/26", samedi: "06/06/26", special: "" },
+    { groupe: "Benony", mardi: "09/06/26", samedi: "13/06/26", special: "" },
+    { groupe: "Zig", mardi: "16/06/26", samedi: "20/06/26", special: "" },
+    { groupe: "Gilles", mardi: "23/06/26", samedi: "27/06/26", special: "" },
+    { groupe: "Assemblée Régionale", mardi: "03/07/2026 au 05/07/2026", samedi: "-", special: "OUI" },
+    { groupe: "Lognos", mardi: "07/07/26", samedi: "11/07/26", special: "" },
+    { groupe: "Mambole", mardi: "14/07/26", samedi: "18/07/26", special: "" },
+    { groupe: "Astasie", mardi: "21/07/26", samedi: "25/07/26", special: "" },
+    { groupe: "Benony", mardi: "28/07/26", samedi: "01/08/26", special: "" },
+    { groupe: "Zig", mardi: "04/08/26", samedi: "08/08/26", special: "" },
+    { groupe: "Gilles", mardi: "11/08/26", samedi: "15/08/26", special: "" },
+    { groupe: "Lognos", mardi: "18/08/26", samedi: "22/08/26", special: "" },
+    { groupe: "Mambole", mardi: "25/08/26", samedi: "29/08/26", special: "" },
+    { groupe: "Astasie", mardi: "01/09/26", samedi: "05/09/26", special: "" },
+    { groupe: "Manetier", mardi: "08/09/26", samedi: "12/09/26", special: "" },
+    { groupe: "Benony", mardi: "15/09/26", samedi: "19/09/26", special: "" },
+    { groupe: "Gilles", mardi: "22/09/26", samedi: "26/09/26", special: "" },
+    { groupe: "Zig", mardi: "29/09/26", samedi: "03/10/26", special: "" },
+    { groupe: "Assemblée Circonscription", mardi: "Semaine Spéciale", samedi: "-", special: "OUI" },
+    { groupe: "Mambole", mardi: "13/10/26", samedi: "17/10/26", special: "" },
+    { groupe: "Astasie", mardi: "20/10/26", samedi: "24/10/26", special: "" },
+    { groupe: "Manetier", mardi: "27/10/26", samedi: "31/10/26", special: "" },
+    { groupe: "Benony", mardi: "03/11/26", samedi: "07/11/26", special: "" },
+    { groupe: "Gilles", mardi: "10/11/26", samedi: "14/11/26", special: "" },
+    { groupe: "Zig", mardi: "17/11/26", samedi: "21/11/26", special: "" },
+    { groupe: "Lognos", mardi: "24/11/26", samedi: "28/11/26", special: "" },
+    { groupe: "Mambole", mardi: "01/12/26", samedi: "05/12/26", special: "" },
+    { groupe: "Benony", mardi: "08/12/26", samedi: "12/12/26", special: "" },
+    { groupe: "Gilles", mardi: "15/12/26", samedi: "19/12/26", special: "" },
+    { groupe: "Zig", mardi: "22/12/26", samedi: "26/12/26", special: "" },
+    { groupe: "Lognos", mardi: "29/12/26", samedi: "03/01/27", special: "" }
 ];
 
 let indexSemaineActive = 0;
@@ -219,7 +265,7 @@ window.changerSemaine = function(index) {
     afficherVem();
 };
 
-// --- LOGIQUES DE SAUVEGARDE DIRECTE ---
+// --- LOGIQUES DE MODIFICATION ET ENREGISTREMENT ---
 window.basculerEditionVem = function() { modeEdition.vem = !modeEdition.vem; afficherVem(); };
 window.sauvegarderVem = function() {
     let sem = semainesVem[indexSemaineActive];
@@ -228,14 +274,48 @@ window.sauvegarderVem = function() {
     sem.joyaux.forEach((j, i) => { j.attribution = document.getElementById("j-" + i).value; });
     sem.ministere.forEach((m, i) => { m.attribution = document.getElementById("m-" + i).value; });
     sem.vie.forEach((v, i) => { v.attribution = document.getElementById("v-" + i).value; });
-    modeEdition.vem = false; alert("✅ Programme Vie et Ministère mis à jour !"); afficherVem();
+    modeEdition.vem = false; alert("✅ Réunion enregistrée !"); afficherVem();
 };
 
-// --- DESIGN : ACCUEIL ADAPTATIF MOBILE & IPAD ---
+window.basculerEditionNettoyage = function() { modeEdition.nettoyage = !modeEdition.nettoyage; afficherNettoyage(); };
+window.sauvegarderNettoyage = function() {
+    donnéesNettoyage.forEach((l, i) => {
+        l.groupe = document.getElementById("gn-" + i).value;
+        l.mardi = document.getElementById("mn-" + i).value;
+        if (l.special !== "OUI") l.samedi = document.getElementById("sn-" + i).value;
+    });
+    modeEdition.nettoyage = false; alert("✅ Nettoyage mis à jour !"); afficherNettoyage();
+};
+
+window.basculerEditionSono = function() { modeEdition.sono = !modeEdition.sono; afficherSonorisation(); };
+window.sauvegarderSono = function() {
+    donnéesProgramme.forEach((l, i) => {
+        l.audio = document.getElementById("as-" + i).value;
+        l.zoom = document.getElementById("zs-" + i).value;
+        l.estrade = document.getElementById("es-" + i).value;
+        l.mardi = document.getElementById("ms-" + i).value;
+        l.samedi = document.getElementById("ss-" + i).value;
+    });
+    modeEdition.sono = false; alert("✅ Sonorisation mise à jour !"); afficherSonorisation();
+};
+
+window.basculerEditionDiscours = function() { modeEdition.discours = !modeEdition.discours; afficherDiscours(); };
+window.sauvegarderDiscours = function() {
+    donnéesDiscours.forEach((l, i) => {
+        l.date = document.getElementById("d-" + i).value;
+        l.theme = document.getElementById("t-" + i).value;
+        l.orateur = document.getElementById("o-" + i).value;
+        l.pres = document.getElementById("p-" + i).value;
+        l.lecteur = document.getElementById("l-" + i).value;
+    });
+    modeEdition.discours = false; alert("✅ Discours mis à jour !"); afficherDiscours();
+};
+
+// --- DESIGN : TABLEAU DE BORD ACCUEIL ---
 function afficherAccueil() {
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; margin:0; padding-bottom:30px;">
-        <nav style="background: #2c3e50; color: white; padding: 20px; text-align: center; box-shadow:0 2px 4px rgba(0,0,0,0.1);"><h1>🚀 Monplaisir App</h1></nav>
+        <nav style="background: #2c3e50; color: white; padding: 20px; text-align: center; box-shadow:0 2px 4px rgba(0,0,0,0.1);"><h1> Monplaisir App</h1></nav>
         <div style="max-width: 95%; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px;">
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #9b59b6; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align:center;">
                 <h3>🔊 Sonorisation & Estrade</h3><button onclick="window.changerPage('sonorisation')" style="width:100%; padding:12px; background:#9b59b6; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
@@ -253,7 +333,7 @@ function afficherAccueil() {
     </div>`;
 }
 
-// --- RENDU CAHIER VIE ET MINISTÈRE (ONGLETS SPÉCIAUX IPAD ET SMARTPHONE) ---
+// --- DESIGN : CAHIER VIE ET MINISTÈRE (ONGLETS DÉTAILLÉS) ---
 function afficherVem() {
     let sem = semainesVem[indexSemaineActive];
     let boutonsSemaines = "";
@@ -295,25 +375,109 @@ function afficherVem() {
                 <div style="background:#f8f9fa; padding:12px; border-radius:6px; margin-bottom:20px; display:flex; flex-direction:column; gap:6px; font-size:13px; border-left: 4px solid #f1c40f;">
                     <div><strong>🎵 Cantique d'ouverture :</strong> ${sem.intro.cantique}</div>
                     <div><strong>👔 Président :</strong> ${modeEdition.vem ? `<input id="edit-pres" value="${sem.intro.president}">` : sem.intro.president}</div>
-                    <div><strong>🙏 Prière d'introduction :</strong> ${modeEdition.vem ? `<input id="edit-priere" value="${sem.intro.priere}">` : sem.intro.priere}</div>
+                    <div><strong>🙏 Prière :</strong> ${modeEdition.vem ? `<input id="edit-priere" value="${sem.intro.priere}">` : sem.intro.priere}</div>
                 </div>
 
-                <h4 style="color:#2980b9; margin-bottom:10px; border-bottom:1px solid #2980b9; padding-bottom:5px; font-size:14px; letter-spacing:0.5px;">💎 JOYAUX DE LA PAROLE</h4>
+                <h4 style="color:#2980b9; margin-bottom:10px; border-bottom:1px solid #2980b9; padding-bottom:5px; font-size:14px;">💎 JOYAUX DE LA PAROLE</h4>
                 ${genererLignes(sem.joyaux, "j")}
 
-                <h4 style="color:#c0392b; margin-top:25px; margin-bottom:10px; border-bottom:1px solid #c0392b; padding-bottom:5px; font-size:14px; letter-spacing:0.5px;">🏃 APPLIQUE-TOI AU MINISTÈRE</h4>
+                <h4 style="color:#c0392b; margin-top:25px; margin-bottom:10px; border-bottom:1px solid #c0392b; padding-bottom:5px; font-size:14px;">🏃 APPLIQUE-TOI AU MINISTÈRE</h4>
                 ${genererLignes(sem.ministere, "m")}
 
-                <h4 style="color:#27ae60; margin-top:25px; margin-bottom:10px; border-bottom:1px solid #27ae60; padding-bottom:5px; font-size:14px; letter-spacing:0.5px;">🧼 VIE CHRÉTIENNE</h4>
+                <h4 style="color:#27ae60; margin-top:25px; margin-bottom:10px; border-bottom:1px solid #27ae60; padding-bottom:5px; font-size:14px;">🧼 VIE CHRÉTIENNE</h4>
                 ${genererLignes(sem.vie, "v")}
             </div>
         </div>
     </div>`;
 }
 
-// Pages secondaires temporaires pour la navigation
-function afficherSonorisation() { document.body.innerHTML = '<nav style="background:#9b59b6;color:white;padding:15px;text-align:center;"><h2>🔊 Sono & Estrade active</h2><button onclick="window.changerPage(\'accueil\')" style="padding:10px;">Retour</button></nav>'; }
-function afficherDiscours() { document.body.innerHTML = '<nav style="background:#e67e22;color:white;padding:15px;text-align:center;"><h2>🎤 Discours Publics actif</h2><button onclick="window.changerPage(\'accueil\')" style="padding:10px;">Retour</button></nav>'; }
-function afficherNettoyage() { document.body.innerHTML = '<nav style="background:#2ecc71;color:white;padding:15px;text-align:center;"><h2>🧼 Nettoyage actif</h2><button onclick="window.changerPage(\'accueil\')" style="padding:10px;">Retour</button></nav>'; }
+// --- DESIGN : DISCOURS PUBLICS COMPLET ---
+function afficherDiscours() {
+    let lignes = "";
+    donnéesDiscours.forEach((l, i) => {
+        let styleLigne = l.special === "OUI" ? "background-color: #fff3e0; font-weight: bold;" : "";
+        lignes += `<tr style="border-bottom: 1px solid #eee; ${styleLigne}">
+            <td style="padding: 10px;">${modeEdition.discours ? `<input id="d-${i}" value="${l.date}" style="width:80px">` : l.date}</td>
+            <td style="padding: 10px;">${modeEdition.discours ? `<input id="t-${i}" value="${l.theme}" style="width:100%">` : `<strong>${l.theme}</strong> <small>(n°${l.num})</small>`}</td>
+            <td style="padding: 10px;">${modeEdition.discours ? `<input id="o-${i}" value="${l.orateur}" style="width:100%">` : `${l.orateur} <br><small>${l.assemblee}</small>`}</td>
+            <td style="padding: 10px;">${modeEdition.discours ? `<input id="p-${i}" value="${l.pres}" style="width:100%">` : l.pres}</td>
+            <td style="padding: 10px;">${modeEdition.discours ? `<input id="l-${i}" value="${l.lecteur}" style="width:100%">` : l.lecteur}</td>
+        </tr>`;
+    });
+    document.body.innerHTML = `
+    <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:30px;">
+        <nav style="background: #e67e22; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+            <h2 style="margin:0; font-size:18px;">🎤 Discours Publics</h2>
+            <div>
+                <button onclick="${modeEdition.discours ? 'window.sauvegarderDiscours()' : 'window.basculerEditionDiscours()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.discours ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
+            </div>
+        </nav>
+        <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
+            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 700px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <tr style="background: #2c3e50; color: white; text-align: left;"><th style="padding:10px;">Date</th><th>Thème</th><th>Orateur</th><th>Président</th><th>Lecteur</th></tr>
+                ${lignes}
+            </table>
+        </div>
+    </div>`;
+}
+
+// --- DESIGN : SONORISATION COMPLÈTE ---
+function afficherSonorisation() {
+    let lignes = "";
+    donnéesProgramme.forEach((l, i) => {
+        lignes += `<tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 10px;">${modeEdition.sono ? `<input id="as-${i}" value="${l.audio}">` : l.audio}</td>
+            <td style="padding: 10px;">${modeEdition.sono ? `<input id="zs-${i}" value="${l.zoom}">` : l.zoom}</td>
+            <td style="padding: 10px;">${modeEdition.sono ? `<input id="es-${i}" value="${l.estrade}">` : l.estrade}</td>
+            <td style="padding: 10px;">${modeEdition.sono ? `<input id="ms-${i}" value="${l.mardi}">` : l.mardi}</td>
+            <td style="padding: 10px;">${modeEdition.sono ? `<input id="ss-${i}" value="${l.samedi}">` : l.samedi}</td>
+        </tr>`;
+    });
+    document.body.innerHTML = `
+    <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:30px;">
+        <nav style="background: #9b59b6; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin:0; font-size:18px;">🔊 Sonorisation & Estrade</h2>
+            <div>
+                <button onclick="${modeEdition.sono ? 'window.sauvegarderSono()' : 'window.basculerEditionSono()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.sono ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
+            </div>
+        </nav>
+        <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
+            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 600px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <tr style="background: #2c3e50; color: white; text-align: left;"><th style="padding:10px;">Audio</th><th>Zoom</th><th>Estrade</th><th>Mardi</th><th>Samedi</th></tr>
+                ${lignes}
+            </table>
+        </div>
+    </div>`;
+}
+
+// --- DESIGN : NETTOYAGE COMPLET ---
+function afficherNettoyage() {
+    let lignes = "";
+    donnéesNettoyage.forEach((l, i) => {
+        lignes += `<tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="gn-${i}" value="${l.groupe}">` : l.groupe}</td>
+            <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="mn-${i}" value="${l.mardi}">` : l.mardi}</td>
+            <td style="padding: 12px;">${modeEdition.nettoyage ? `<input id="sn-${i}" value="${l.samedi}">` : l.samedi}</td>
+        </tr>`;
+    });
+    document.body.innerHTML = `
+    <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:30px;">
+        <nav style="background: #2ecc71; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin:0; font-size:18px;">🧼 Nettoyage de la Salle</h2>
+            <div>
+                <button onclick="${modeEdition.nettoyage ? 'window.sauvegarderNettoyage()' : 'window.basculerEditionNettoyage()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.nettoyage ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
+            </div>
+        </nav>
+        <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
+            <table style="width: 100%; background: white; border-collapse: collapse; min-width: 500px; font-size:13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <tr style="background: #2c3e50; color: white; text-align: left;"><th style="padding:12px;">Groupes</th><th>Mardi</th><th>Samedi</th></tr>
+                ${lignes}
+            </table>
+        </div>
+    </div>`;
+}
 
 afficherAccueil();
