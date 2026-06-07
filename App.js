@@ -68,7 +68,8 @@ for (let i = 1; i <= 120; i++) {
             verso: "🏠 Habitations du 1 au 35, Route de Blonzac.",
             observation: "Conserver cette carte dans l'enveloppe.",
             vueVerso: false,
-            urlImage: "" // Sera géré en direct
+            urlImageRecto: "", 
+            urlImageVerso: ""  
         });
     } else {
         donnéesTerritoires.push({
@@ -79,7 +80,8 @@ for (let i = 1; i <= 120; i++) {
             verso: `Détails des rues spécifiques du Territoire ${i}.`,
             observation: "",
             vueVerso: false,
-            urlImage: ""
+            urlImageRecto: "",
+            urlImageVerso: ""
         });
     }
 }
@@ -102,17 +104,26 @@ window.basculerRectoVerso = function(id) {
     if (t) { t.vueVerso = !t.vueVerso; afficherTerritoires(); }
 };
 
-// Fonction manuelle pour charger l'image depuis l'iPad
-window.chargerImageFichier = function(id) {
-    let input = document.getElementById(`input-file-${id}`);
+// Fonctions de chargement individuelles pour le Recto et le Verso
+window.chargerImageRecto = function(id) {
+    let input = document.getElementById(`input-recto-${id}`);
     if (input && input.files && input.files[0]) {
         let reader = new FileReader();
         reader.onload = function(e) {
             let t = donnéesTerritoires.find(item => item.id === id);
-            if (t) {
-                t.urlImage = e.target.result;
-                afficherTerritoires();
-            }
+            if (t) { t.urlImageRecto = e.target.result; afficherTerritoires(); }
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
+window.chargerImageVerso = function(id) {
+    let input = document.getElementById(`input-verso-${id}`);
+    if (input && input.files && input.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let t = donnéesTerritoires.find(item => item.id === id);
+            if (t) { t.urlImageVerso = e.target.result; afficherTerritoires(); }
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -156,20 +167,20 @@ function afficherAccueil() {
     </div>`;
 }
 
-// --- INTERFACE : 120 CARTES AVEC COLLAGE MANUEL ---
+// --- INTERFACE : 120 CARTES RECTO ET VERSO MANUELS ---
 function afficherTerritoires() {
     let cartesHtml = donnéesTerritoires.map(t => {
         let dateEcheance = t.dateAttribution ? new Date(new Date(t.dateAttribution).setMonth(new Date(t.dateAttribution).getMonth() + 3)).toLocaleDateString('fr-FR') : "";
         let dateSortieFormatee = t.dateAttribution ? new Date(t.dateAttribution).toLocaleDateString('fr-FR') : "-";
         
-        let zoneImageHtml = t.urlImage ? 
-            `<div style="width:100%; height:140px; background: #eaeded url('${t.urlImage}') no-repeat center; background-size: cover; border-bottom: 1px solid #ddd;"></div>` : 
-            `<div style="width:100%; height:140px; background: #f2f4f4; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #b2babb; font-size: 12px; font-style: italic; border-bottom: 1px solid #ddd; padding: 5px; text-align:center;">
-                📷 Aucune photo sélectionnée
-                ${modeEdition.territoires ? `
-                    <input type="file" id="input-file-${t.id}" accept="image/*" style="display:none;" onchange="window.chargerImageFichier(${t.id})">
-                    <button onclick="document.getElementById('input-file-${t.id}').click()" style="margin-top:8px; padding:4px 8px; font-size:11px; font-weight:bold; cursor:pointer; background:#3498db; color:white; border:none; border-radius:4px;">🖼️ Choisir une photo</button>
-                ` : ""}
+        // Sélection de l'image selon la face active (Recto ou Verso)
+        let imageAffichee = t.vueVerso ? t.urlImageVerso : t.urlImageRecto;
+        let faceTexte = t.vueVerso ? "Verso" : "Recto";
+
+        let zoneImageHtml = imageAffichee ? 
+            `<div style="width:100%; height:140px; background: #eaeded url('${imageAffichee}') no-repeat center; background-size: cover; border-bottom: 1px solid #ddd;"></div>` : 
+            `<div style="width:100%; height:140px; background: #f2f4f4; display: flex; align-items: center; justify-content: center; color: #b2babb; font-size: 12px; font-style: italic; border-bottom: 1px solid #ddd; text-align:center; padding:5px;">
+                📷 Aucune photo pour la vue ${faceTexte}
              </div>`;
 
         return `
@@ -179,6 +190,19 @@ function afficherTerritoires() {
             </div>
             
             ${zoneImageHtml}
+
+            ${modeEdition.territoires ? `
+                <div style="background:#ebf5fb; padding:8px; display:flex; justify-content:space-around; border-bottom:1px solid #d4e6f1;">
+                    <div>
+                        <input type="file" id="input-recto-${t.id}" accept="image/*" style="display:none;" onchange="window.chargerImageRecto(${t.id})">
+                        <button onclick="document.getElementById('input-recto-${t.id}').click()" style="padding:4px 6px; font-size:10px; cursor:pointer; background:#2980b9; color:white; border:none; border-radius:3px;">🖼️ Photo Recto</button>
+                    </div>
+                    <div>
+                        <input type="file" id="input-verso-${t.id}" accept="image/*" style="display:none;" onchange="window.chargerImageVerso(${t.id})">
+                        <button onclick="document.getElementById('input-verso-${t.id}').click()" style="padding:4px 6px; font-size:10px; cursor:pointer; background:#8e44ad; color:white; border:none; border-radius:3px;">🖼️ Photo Verso</button>
+                    </div>
+                </div>
+            ` : ""}
 
             <div style="padding: 12px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px;">
                 <div style="background: #f8f9fa; padding: 8px; border-radius: 6px; font-size: 12px; border-left: 3px solid #2ecc71;">
@@ -196,7 +220,7 @@ function afficherTerritoires() {
                     <div style="font-weight: bold; color: #7f8c8d; font-size: 10px; margin-bottom: 2px; text-transform: uppercase;">📍 ${t.vueVerso ? "Détails Verso" : "Vue Recto"}</div>
                     <div>${t.vueVerso ? t.verso : t.recto}</div>
                 </div>
-                <button onclick="window.basculerRectoVerso(${t.id})" style="width: 100%; padding: 6px; background: #f2f4f4; border: 1px solid #bdc3c7; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; color: #34495e;">🔄 Tourner la carte</button>
+                <button onclick="window.basculerRectoVerso(${t.id})" style="width: 100%; padding: 6px; background: #f2f4f4; border: 1px solid #bdc3c7; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; color: #34495e;">🔄 Tourner la carte (${faceTexte === "Recto" ? "voir Verso" : "voir Recto"})</button>
                 <div style="font-size: 12px;">
                     <label style="font-weight: bold; color: #7f8c8d;">Observations :</label>
                     ${modeEdition.territoires ? 
