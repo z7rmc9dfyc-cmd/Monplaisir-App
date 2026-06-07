@@ -53,7 +53,7 @@ let semainesVem = [
         ],
         vie: [
             { temps: "19:21", titre: "7. Les étapes de la guérison spirituelle (15 min.)", attribution: "Widney ZIG" },
-            { temps: "19:36", titre: "8. Étude biblique de l'assemblée (30 min.)", attribution: "Conducteur: Thierry GILLES / Lecteur: Ludovic" },
+            { temps: "19:36", border: "", titre: "8. Étude biblique de l'assemblée (30 min.)", attribution: "Conducteur: Thierry GILLES / Lecteur: Ludovic" },
             { temps: "20:06", titre: "Aperçu & Cantique 153", attribution: "Prière finale: Franck JALET" }
         ]
     },
@@ -174,22 +174,22 @@ let semainesVem = [
     }
 ];
 
-// --- 2. DONNÉES COMPLÈTES DISCOURS PUBLICS ---
+// --- 2. DONNÉES COMPLÈTES DISCOURS PUBLICS (EXTRAITES DE TON PDF) ---
 let donnéesDiscours = [
-    { date: "02/04/2026", theme: "MÉMORIAL : Notre reconnaissance pour Dieu et le Christ", num: "-", orateur: "ZIG Widney", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "-", groupe: "-", special: "OUI" },
-    { date: "04/04/2026", theme: "La pensée de Dieu sur le mariage et la sexualité", num: "13", orateur: "HILAIRE Claude", assemblee: "POINTE NOIRE", pres: "BENONY Christian", lecteur: "LOGNOS Nicolas", groupe: "ZIG" },
+    { date: "02/04/2026", theme: "MÉMORIAL : Montrons notre reconnaissance pour ce que Dieu et le Christ ont fait pour nous", num: "-", orateur: "ZIG Widney", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "-", groupe: "-", special: "OUI" },
+    { date: "04/04/2026", theme: "La pensée de Dieu sur le mariage et la sexualité", num: "13", orateur: "HILAIRE Claude", assemblee: "POINTE NOIRE", pres: "BENONY Christian", lecteur: "LOGNOS Nicolas", groupe: "Groupe ZIG" },
     { date: "11/04/2026", theme: "Comment vaincre le mal par le bien", num: "117", orateur: "LOGNOS Nicolas", assemblee: "GOYAVE", pres: "MAMBOL Freddy", lecteur: "ZIG Widney", groupe: "-" },
-    { date: "18/04/2026", theme: "Avez-vous trouvé une 'perle de grande valeur' ?", num: "24", orateur: "AÏELLO Salvator", assemblee: "VERNOU", pres: "ASTASIE Roland", lecteur: "DANICAN Cédric", groupe: "Benony" },
+    { date: "18/04/2026", theme: "Avez-vous trouvé une \"perle de grande valeur\" ?", num: "24", orateur: "AÏELLO Salvator", assemblee: "VERNOU", pres: "ASTASIE Roland", lecteur: "DANICAN Cédric", groupe: "Groupe Benony" },
     { date: "25/04/2026", theme: "RÉUNION SPÉCIALE", num: "-", orateur: "-", assemblee: "-", pres: "-", lecteur: "-", groupe: "-", special: "OUI" },
-    { date: "02/05/2026", theme: "Vivons avec bon sens au sein d'un monde dépravé", num: "138", orateur: "POMMIER Gane", assemblee: "ST CLAUDE", pres: "ZIG Widney", lecteur: "LYCAON Luc", groupe: "MAMBOL" },
-    { date: "09/05/2026", theme: "Jéhovah est une 'hauteur sûre' pour son peuple", num: "151", orateur: "MAMBOL Freddy", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "MANNETIER Ludovic", groupe: "MAMBOL" },
-    { date: "16/05/2026", theme: "Quel est votre but dans la vie ?", num: "60", orateur: "FERDY Sitcharn", assemblee: "POINTE NOIRE", pres: "GILLES Thierry", lecteur: "MELGAR Olivier", groupe: "GILLES" },
-    { date: "23/05/2026", theme: "Où trouver de l'aide dans les temps de détresse ?", num: "177", orateur: "LANDAIS ELIE", assemblee: "CAPESTERRE SUD", pres: "MANNETIER Ludovic", lecteur: "JOURSON Victor", groupe: "LOGNOS" },
+    { date: "02/05/2026", theme: "Vivons avec bon sens au sein d'un monde dépravé", num: "138", orateur: "POMMIER Gane", assemblee: "ST CLAUDE", pres: "ZIG Widney", lecteur: "LYCAON Luc", groupe: "Groupe MAMBOL" },
+    { date: "09/05/2026", theme: "Jéhovah est \"une hauteur sûre\" pour son peuple", num: "151", orateur: "MAMBOL Freddy", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "MANNETIER Ludovic", groupe: "Groupe MAMBOL" },
+    { date: "16/05/2026", theme: "Quel est votre but dans la vie ?", num: "60", orateur: "FERDY Sitcharn", assemblee: "POINTE NOIRE", pres: "GILLES Thierry", lecteur: "MELGAR Olivier", groupe: "Groupe GILLES" },
+    { date: "23/05/2026", theme: "Où trouver de l'aide dans les temps de détresse ?", num: "177", orateur: "LANDAIS ELIE", assemblee: "CAPESTERRE SUD", pres: "MANNETIER Ludovic", lecteur: "JOURSON Victor", groupe: "Groupe LOGNOS" },
     { date: "30/05/2026", theme: "Marchez-vous avec Dieu ?", num: "149", orateur: "ADHEL Gilbert", assemblee: "GOYAVE", pres: "SIBA André", lecteur: "BENONY Christian", groupe: "-" },
-    { date: "06/06/2026", theme: "SEMAINE SPÉCIALE - Comment récolter la vie éternelle ?", num: "-", orateur: "GALTIER Ludovic", assemblee: "-", pres: "CASI Daniel", lecteur: "-", groupe: "-", special: "OUI" },
-    { date: "13/06/2026", theme: "Pourquoi craindre le vrai Dieu ?", num: "163", orateur: "BENONY Christian", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "ADHEL Gilbert", groupe: "-" },
-    { date: "20/06/2026", theme: "La mort est-elle la fin de tout ?", num: "184", orateur: "ASTASIE Roland", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "GILLES Thierry", groupe: "-" },
-    { date: "27/06/2026", theme: "Utilisons l'instruction pour louer Jéhovah", num: "146", orateur: "BUJADINOVIC Erick", assemblee: "POINTE NOIRE", pres: "LOGNOS Nicolas", lecteur: "CASI Daniel", groupe: "MANNETIER" }
+    { date: "06/06/2026", theme: "Comment récolter la vie éternelle?", num: "-", orateur: "GALTIER Ludovic", assemblee: "SEMAINE SPECIALE", pres: "CASI Daniel", lecteur: "-", groupe: "-", special: "OUI" },
+    { date: "13/06/2026", theme: "Pourquoi crainde le vai Dieu ?", num: "163", orateur: "BENONY Christian", assemblee: "GOYAVE", pres: "ADHEL Gilbert", lecteur: "ADHEL Gilbert", groupe: "-" },
+    { date: "20/06/2026", theme: "La mort est-elle la fin de tout?", num: "184", orateur: "ASTASIE Roland", assemblee: "GOYAVE", pres: "TORVAL Malick", lecteur: "GILLES Thierry", groupe: "-" },
+    { date: "27/06/2026", theme: "Utilisons l'instruction pour louer Jéhovah", num: "146", orateur: "BUJADINOVIC Erick", assemblee: "POINTE NOIRE", pres: "LOGNOS Nicolas", lecteur: "CASI Daniel", groupe: "Groupe MANNETIER" }
 ];
 
 // --- 3. DONNÉES COMPLÈTES SONORISATION ---
@@ -249,18 +249,30 @@ let donnéesNettoyage = [
     { groupe: "Lognos", mardi: "29/12/26", samedi: "03/01/27", special: "" }
 ];
 
-// --- 5. INITIALISATION DES 120 CARTES DE TERRITOIRE ---
+// --- 5. INITIALISATION DES 120 CARTES DE TERRITOIRE (AVEC LA CARTE REELLE 89) ---
 let donnéesTerritoires = [];
 for (let i = 1; i <= 120; i++) {
-    donnéesTerritoires.push({
-        id: i,
-        proclamateur: "",
-        dateAttribution: "",
-        recto: `Secteur général et limites de la carte géographique ${i}.`,
-        verso: `Détails des rues, résidences et impasses spécifiques du Territoire ${i}.`,
-        observation: "",
-        vueVerso: false
-    });
+    if (i === 89) {
+        donnéesTerritoires.push({
+            id: 89,
+            proclamateur: "Mambole Lydia",
+            dateAttribution: "2026-06-04", // Jeudi 4 juin
+            recto: "📍 Lieu : Route de Blonzac. Territoire global délimité par la zone principale.",
+            verso: "🏠 Habitations numérotées du 1 au 35 situées le long de la Route de Blonzac.",
+            observation: "Conserver cette carte dans l'enveloppe, ne pas la tacher, la marquer ou la plier.",
+            vueVerso: false
+        });
+    } else {
+        donnéesTerritoires.push({
+            id: i,
+            proclamateur: "",
+            dateAttribution: "",
+            recto: `Secteur général et limites de la carte géographique ${i}.`,
+            verso: `Détails des rues, résidences et impasses spécifiques du Territoire ${i}.`,
+            observation: "",
+            vueVerso: false
+        });
+    }
 }
 
 let indexSemaineActive = 0;
@@ -340,7 +352,7 @@ window.sauvegarderDiscours = function() {
     modeEdition.discours = false; alert("✅ Discours mis à jour !"); afficherDiscours();
 };
 
-// --- DESIGN : ACCUEIL TITRE ---
+// --- DESIGN : ACCUEIL ---
 function afficherAccueil() {
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; margin:0; padding-bottom:30px;">
@@ -508,7 +520,7 @@ function afficherNettoyage() {
     </div>`;
 }
 
-// --- DESIGN RESTRUCTURE DU MODULE TERRITOIRES ET LOCALISATION (120 CARTES SANS BOURG) ---
+// --- DESIGN DU MODULE TERRITOIRES ET LOCALISATION ---
 function afficherTerritoires() {
     let cartesHtml = donnéesTerritoires.map(t => {
         let dateEcheance = "";
@@ -516,6 +528,10 @@ function afficherTerritoires() {
             let d = new Date(t.dateAttribution);
             d.setMonth(d.getMonth() + 3);
             dateEcheance = d.toLocaleDateString('fr-FR');
+        }
+        let dateSortieFormatee = "-";
+        if (t.dateAttribution) {
+            dateSortieFormatee = new Date(t.dateAttribution).toLocaleDateString('fr-FR');
         }
         return `
         <div style="background: white; border-radius: 8px; border: 1px solid #d6dbdf; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden;">
@@ -530,7 +546,7 @@ function afficherTerritoires() {
                         `<div style="font-size:14px; font-weight:bold; color:#2c3e50; margin-bottom:8px;">${t.proclamateur || "Disponible"}</div>`
                     }
                     <div style="display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: #566573;">
-                        <div>📅 <strong>Date de sortie :</strong> ${modeEdition.territoires ? `<input type="date" id="date-${t.id}" value="${t.dateAttribution}" style="font-size:11px;">` : (t.dateAttribution ? new Date(t.dateAttribution).toLocaleDateString('fr-FR') : "-")}</div>
+                        <div>📅 <strong>Date de sortie :</strong> ${modeEdition.territoires ? `<input type="date" id="date-${t.id}" value="${t.dateAttribution}" style="font-size:11px;">` : dateSortieFormatee}</div>
                         ${t.dateAttribution ? `<div style="color:#e67e22; font-weight:bold; margin-top: 2px;">📥 <strong>Date de rentrée prévue :</strong> ${dateEcheance}</div>` : ""}
                     </div>
                 </div>
