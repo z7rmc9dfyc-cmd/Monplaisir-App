@@ -22,7 +22,7 @@ let donnéesDiscours = [
     { date: "28/06/2026", president: "Ludovic", orateur: "Widney", theme: "Pourquoi suivre les principes de la Bible ?" }
 ];
 
-// --- 3. DONNÉES NETTOYAGE COMPLET JUSQU'À DÉCEMBRE ---
+// --- 3. DONNÉES NETTOYAGE ---
 let donnéesNettoyage = [
     { groupe: "Benony", mardi: "21/04/26", samedi: "25/04/26", special: "" },
     { groupe: "Gilles", mardi: "28/04/26", samedi: "02/05/26", special: "" },
@@ -63,16 +63,42 @@ let donnéesNettoyage = [
     { groupe: "Lognos", mardi: "29/12/26", samedi: "03/01/27", special: "" }
 ];
 
-let modeEdition = { sono: false, discours: false, nettoyage: false };
+// --- 4. DONNÉES VIE ET MINISTÈRE (Extraites de tes PDF) ---
+let donnéesVieEtMinistere = [
+    { date: "07/07/2026", president: "Ludovic MANNETIER", joyaux: "Widney ZIG", perles: "Christian BENONY", lecture: "Iréné ULCE" },
+    { date: "14/07/2026", president: "Thierry GILLES", joyaux: "Thierry GILLES", perles: "Fredy MAMBOLE", lecture: "Jean-Louis" },
+    { date: "21/07/2026", president: "Rolland ASTASIE", joyaux: "Rolland ASTASIE", perles: "Victor JOURSON", lecture: "Luc" },
+    { date: "28/07/2026", president: "Widney ZIG", joyaux: "Widney ZIG", perles: "Reynold BELTAI", lecture: "Malick" },
+    { date: "04/08/2026", president: "Freddy MAMBOLE", joyaux: "Roland ASTASIE", perles: "Thierry GILLES", lecture: "Daniel CASI" },
+    { date: "11/08/2026", president: "Victor JOURSON", joyaux: "Victor JOURSON", perles: "Nicolas LOGNOS", lecture: "José" },
+    { date: "18/08/2026", president: "Gilbert", joyaux: "Gilbert", perles: "Christian BENONY", lecture: "Olivier" },
+    { date: "25/08/2026", president: "Daniel CASI", joyaux: "Daniel CASI", perles: "Malick", lecture: "Iréné ULCE" },
+    { date: "01/09/2026", president: "Thierry GILLES", joyaux: "Ludovic MANNETIER", perles: "Roland ASTASIE", lecture: "Iréné ULCE" }
+];
+
+let modeEdition = { sono: false, discours: false, nettoyage: false, vém: false };
 
 window.changerPage = function(page) {
     if (page === 'accueil') afficherAccueil();
     if (page === 'sonorisation') afficherSonorisation();
     if (page === 'discours') afficherDiscours();
     if (page === 'nettoyage') afficherNettoyage();
+    if (page === 'vem') afficherVem();
 };
 
-// --- LOGIQUES DE MODIFICATION (EDIT) ---
+// --- LOGIQUES DE SAUVEGARDE ET EDITION ---
+window.basculerEditionVem = function() { modeEdition.vém = !modeEdition.vém; afficherVem(); };
+window.sauvegarderVem = function() {
+    donnéesVieEtMinistere.forEach((l, i) => {
+        l.date = document.getElementById(`vd-${i}`).value;
+        l.president = document.getElementById(`vp-${i}`).value;
+        l.joyaux = document.getElementById(`vj-${i}`).value;
+        l.perles = document.getElementById(`vpe-${i}`).value;
+        l.lecture = document.getElementById(`vl-${i}`).value;
+    });
+    modeEdition.vém = false; alert("✅ Programme Vie et Ministère mis à jour !"); afficherVem();
+};
+
 window.basculerEditionNettoyage = function() { modeEdition.nettoyage = !modeEdition.nettoyage; afficherNettoyage(); };
 window.sauvegarderNettoyage = function() {
     donnéesNettoyage.forEach((l, i) => {
@@ -109,12 +135,12 @@ window.sauvegarderDiscours = function() {
     modeEdition.discours = false; alert("✅ Discours mis à jour !"); afficherDiscours();
 };
 
-// --- DESIGN DE L'ACCUEIL ---
+// --- TABLEAU DE BORD (ACCUEIL) ---
 function afficherAccueil() {
     document.body.innerHTML = `
-    <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; margin:0;">
+    <div style="font-family: 'Segoe UI', sans-serif; background: #f4f6f9; min-height: 100vh; margin:0;">
         <nav style="background: #2c3e50; color: white; padding: 20px; text-align: center;"><h1>🚀 Monplaisir App</h1></nav>
-        <div style="max-width: 1100px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 20px;">
+        <div style="max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 20px;">
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #9b59b6; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                 <h3>🔊 Sonorisation & Estrade</h3><button onclick="window.changerPage('sonorisation')" style="width:100%; padding:10px; background:#9b59b6; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Ouvrir</button>
             </div>
@@ -124,6 +150,9 @@ function afficherAccueil() {
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                 <h3>🧼 Programme de nettoyage</h3><button onclick="window.changerPage('nettoyage')" style="width:100%; padding:10px; background:#2ecc71; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Ouvrir</button>
             </div>
+            <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #f1c40f; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3>📖 Vie et Ministère</h3><button onclick="window.changerPage('vem')" style="width:100%; padding:10px; background:#f1c40f; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; color:#2c3e50;">Ouvrir</button>
+            </div>
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                 <h3>👥 Membres & Territoires</h3><button onclick="alert('Bientôt disponible')" style="width:100%; padding:10px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Ouvrir</button>
             </div>
@@ -131,7 +160,39 @@ function afficherAccueil() {
     </div>`;
 }
 
-// --- DESIGN NETTOYAGE ---
+// --- PAGE 4 : VIE ET MINISTÈRE ---
+function afficherVem() {
+    let lignes = "";
+    donnéesVieEtMinistere.forEach((l, i) => {
+        lignes += `<tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px; font-weight:bold;">${modeEdition.vém ? `<input id="vd-${i}" value="${l.date}" style="width:90%">` : l.date}</td>
+            <td style="padding: 12px;">${modeEdition.vém ? `<input id="vp-${i}" value="${l.president}" style="width:90%">` : l.president}</td>
+            <td style="padding: 12px;">${modeEdition.vém ? `<input id="vj-${i}" value="${l.joyaux}" style="width:90%">` : l.joyaux}</td>
+            <td style="padding: 12px;">${modeEdition.vém ? `<input id="vpe-${i}" value="${l.perles}" style="width:90%">` : l.perles}</td>
+            <td style="padding: 12px;">${modeEdition.vém ? `<input id="vl-${i}" value="${l.lecture}" style="width:90%">` : l.lecture}</td>
+        </tr>`;
+    });
+    document.body.innerHTML = `
+    <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh;">
+        <nav style="background: #f1c40f; color: #2c3e50; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin:0">📖 Réunion Vie et Ministère</h2>
+            <div>
+                <button onclick="${modeEdition.vém ? 'window.sauvegarderVem()' : 'window.basculerEditionVem()'}" style="padding: 8px 15px; cursor:pointer; font-weight:bold; background:#2c3e50; color:white; border:none; border-radius:4px;">${modeEdition.vém ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 8px 15px; cursor:pointer; background:white; color:#2c3e50; border:1px solid #2c3e50; border-radius:4px; font-weight:bold; margin-left:10px;">Accueil</button>
+            </div>
+        </nav>
+        <div style="padding: 20px; max-width: 1200px; margin: auto;">
+            <table style="width: 100%; background: white; border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <tr style="background: #2c3e50; color: white; text-align: left;">
+                    <th style="padding: 12px;">Semaine</th><th style="padding: 12px;">Président</th><th style="padding: 12px;">Joyaux (10 min)</th><th style="padding: 12px;">Perles (10 min)</th><th style="padding: 12px;">Lecture</th>
+                </tr>
+                ${lignes}
+            </table>
+        </div>
+    </div>`;
+}
+
+// --- DESIGNS EXISTANTS RESTANTS ---
 function afficherNettoyage() {
     let lignes = "";
     donnéesNettoyage.forEach((l, i) => {
@@ -162,7 +223,6 @@ function afficherNettoyage() {
     </div>`;
 }
 
-// --- DESIGN SONORISATION ---
 function afficherSonorisation() {
     let lignes = "";
     donnéesProgramme.forEach((l, i) => {
@@ -196,7 +256,6 @@ function afficherSonorisation() {
     </div>`;
 }
 
-// --- DESIGN DISCOURS ---
 function afficherDiscours() {
     let lignes = "";
     donnéesDiscours.forEach((l, i) => {
@@ -227,4 +286,4 @@ function afficherDiscours() {
     </div>`;
 }
 
-afficherAccueil()
+afficherAccueil();
