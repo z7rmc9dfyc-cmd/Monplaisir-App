@@ -1,4 +1,4 @@
-// --- 1. DONNÉES COMPLÈTES VIE ET MINISTÈRE (TEXTE EXTRAIT DU PDF) ---
+// --- 1. DONNÉES COMPLÈTES VIE ET MINISTÈRE (JUILLET À SEPTEMBRE) ---
 let semainesVem = [
     {
         titre: "07/07/2026 | JÉRÉMIE 13-15",
@@ -208,7 +208,7 @@ let donnéesProgramme = [
     { audio: "Victor", zoom: "Thierry", estrade: "Fredy", perchistes: "Jean Louis / Olivier", mardi: "04/08/2026", samedi: "08/08/2026", special: "" }
 ];
 
-// --- 4. DONNÉES COMPLÈTES NETTOYAGE COMPLET JUSQU'À DÉCEMBRE ---
+// --- 4. DONNÉES COMPLÈTES NETTOYAGE ---
 let donnéesNettoyage = [
     { groupe: "Benony", mardi: "21/04/26", samedi: "25/04/26", special: "" },
     { groupe: "Gilles", mardi: "28/04/26", samedi: "02/05/26", special: "" },
@@ -249,16 +249,15 @@ let donnéesNettoyage = [
     { groupe: "Lognos", mardi: "29/12/26", samedi: "03/01/27", special: "" }
 ];
 
-// --- 5. INITIALISATION AUTOMATIQUE DES 120 CARTES DE TERRITOIRE ---
+// --- 5. INITIALISATION DES 120 CARTES DE TERRITOIRE ---
 let donnéesTerritoires = [];
 for (let i = 1; i <= 120; i++) {
     donnéesTerritoires.push({
         id: i,
-        zone: i <= 40 ? "Bourg" : i <= 80 ? "Campagne" : "Secteur Hauts",
         proclamateur: "",
         dateAttribution: "",
-        recto: `Secteur général et limites cartographiques du Territoire ${i}.`,
-        verso: `Rues, résidences, impasses détaillées et points spécifiques du Territoire ${i}.`,
+        recto: `Secteur général et limites de la carte géographique ${i}.`,
+        verso: `Détails des rues, résidences et impasses spécifiques du Territoire ${i}.`,
         observation: "",
         vueVerso: false
     });
@@ -282,7 +281,7 @@ window.basculerRectoVerso = function(id) {
     if (t) { t.vueVerso = !t.vueVerso; afficherTerritoires(); }
 };
 
-// --- EMETTEURS LOGIQUES ET FONCTIONS DE SAUVEGARDE DE TOUTES LES RUBRIQUES ---
+// --- LOGIQUES DE SAUVEGARDE POUR TOUTES LES PAGES ---
 window.basculerEditionVem = function() { modeEdition.vem = !modeEdition.vem; afficherVem(); };
 window.sauvegarderVem = function() {
     let sem = semainesVem[indexSemaineActive];
@@ -304,7 +303,7 @@ window.sauvegarderTerritoires = function() {
         if (elDate) t.dateAttribution = elDate.value;
         if (elObs) t.observation = elObs.value;
     });
-    modeEdition.territoires = false; alert("✅ Registre Territory Helper sauvegardé !"); afficherTerritoires();
+    modeEdition.territoires = false; alert("✅ Registre Territoires sauvegardé !"); afficherTerritoires();
 };
 
 window.basculerEditionNettoyage = function() { modeEdition.nettoyage = !modeEdition.nettoyage; afficherNettoyage(); };
@@ -341,11 +340,11 @@ window.sauvegarderDiscours = function() {
     modeEdition.discours = false; alert("✅ Discours mis à jour !"); afficherDiscours();
 };
 
-// --- DESIGN GLOBAL ADAPTATIF MOBILE & IPAD (ACCUEIL) ---
+// --- DESIGN : ACCUEIL TITRE ---
 function afficherAccueil() {
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; margin:0; padding-bottom:30px;">
-        <nav style="background: #2c3e50; color: white; padding: 20px; text-align: center; box-shadow:0 2px 4px rgba(0,0,0,0.1);"><h1> Monplaisir App</h1></nav>
+        <nav style="background: #2c3e50; color: white; padding: 20px; text-align: center; box-shadow:0 2px 4px rgba(0,0,0,0.1);"><h1>🗺️ Territoires et Localisation</h1></nav>
         <div style="max-width: 95%; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px;">
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #9b59b6; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align:center;">
                 <h3>🔊 Sonorisation & Estrade</h3><button onclick="window.changerPage('sonorisation')" style="width:100%; padding:12px; background:#9b59b6; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
@@ -360,7 +359,7 @@ function afficherAccueil() {
                 <h3>📖 Cahier Vie et Ministère</h3><button onclick="window.changerPage('vem')" style="width:100%; padding:12px; background:#f1c40f; color:#2c3e50; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
             </div>
             <div style="background: white; padding: 20px; border-radius: 10px; border-top: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align:center;">
-                <h3>🗺️ Territoires (Territory Helper)</h3><button onclick="window.changerPage('territoires')" style="width:100%; padding:12px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
+                <h3>🗺️ Gestion des Territoires</h3><button onclick="window.changerPage('territoires')" style="width:100%; padding:12px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; font-size:16px;">Ouvrir</button>
             </div>
         </div>
     </div>`;
@@ -436,8 +435,8 @@ function afficherDiscours() {
         <nav style="background: #e67e22; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
             <h2 style="margin:0; font-size:18px;">🎤 Discours Publics 2026</h2>
             <div>
-                <button onclick="${modeEdition.discours ? 'window.sauvegarderDiscours()' : 'window.basculerEditionDiscours()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.discours ? '💾 Sauver' : '✏️ Modifier'}</button>
-                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
+                <button onclick="${modeEdition.discours ? 'window.sauvegarderDiscours()' : 'window.basculerEditionDiscours()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer; background: white; color: #e67e22; border:none; border-radius:4px;">${modeEdition.discours ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer; background: transparent; color: white; border: 1px solid white; border-radius:4px;">Accueil</button>
             </div>
         </nav>
         <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
@@ -467,8 +466,8 @@ function afficherSonorisation() {
         <nav style="background: #9b59b6; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
             <h2 style="margin:0; font-size:18px;">🔊 Sonorisation & Estrade</h2>
             <div>
-                <button onclick="${modeEdition.sono ? 'window.sauvegarderSono()' : 'window.basculerEditionSono()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.sono ? '💾 Sauver' : '✏️ Modifier'}</button>
-                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
+                <button onclick="${modeEdition.sono ? 'window.sauvegarderSono()' : 'window.basculerEditionSono()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer; background: white; color:#9b59b6; border:none; border-radius:4px;">${modeEdition.sono ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer; background: transparent; color: white; border: 1px solid white; border-radius:4px;">Accueil</button>
             </div>
         </nav>
         <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
@@ -480,7 +479,7 @@ function afficherSonorisation() {
     </div>`;
 }
 
-// --- DESIGN : NETTOYAGE SULPHATE ---
+// --- DESIGN : NETTOYAGE ---
 function afficherNettoyage() {
     let lignes = "";
     donnéesNettoyage.forEach((l, i) => {
@@ -496,8 +495,8 @@ function afficherNettoyage() {
         <nav style="background: #2ecc71; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
             <h2 style="margin:0; font-size:18px;">🧼 Programme de Nettoyage</h2>
             <div>
-                <button onclick="${modeEdition.nettoyage ? 'window.sauvegarderNettoyage()' : 'window.basculerEditionNettoyage()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer;">${modeEdition.nettoyage ? '💾 Sauver' : '✏️ Modifier'}</button>
-                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer;">Accueil</button>
+                <button onclick="${modeEdition.nettoyage ? 'window.sauvegarderNettoyage()' : 'window.basculerEditionNettoyage()'}" style="padding: 6px 12px; font-weight:bold; cursor:pointer; background: white; color: #2ecc71; border:none; border-radius:4px;">${modeEdition.nettoyage ? '💾 Sauver' : '✏️ Modifier'}</button>
+                <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; margin-left:5px; cursor:pointer; background: transparent; color: white; border: 1px solid white; border-radius:4px;">Accueil</button>
             </div>
         </nav>
         <div style="padding: 10px; max-width: 100%; overflow-x: auto;">
@@ -509,7 +508,7 @@ function afficherNettoyage() {
     </div>`;
 }
 
-// --- DESIGN DE LA GESTION ET COMPATIBILITÉ DU MODULE TERRITOIRES (120 CARTES) ---
+// --- DESIGN RESTRUCTURE DU MODULE TERRITOIRES ET LOCALISATION (120 CARTES SANS BOURG) ---
 function afficherTerritoires() {
     let cartesHtml = donnéesTerritoires.map(t => {
         let dateEcheance = "";
@@ -520,20 +519,19 @@ function afficherTerritoires() {
         }
         return `
         <div style="background: white; border-radius: 8px; border: 1px solid #d6dbdf; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden;">
-            <div style="background: #3498db; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
-                <strong style="font-size: 15px;">Carte N° ${t.id}</strong>
-                <span style="font-size: 11px; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">${t.zone}</span>
+            <div style="background: #3498db; color: white; padding: 10px; text-align: center;">
+                <strong style="font-size: 16px;">Carte N° ${t.id}</strong>
             </div>
             <div style="padding: 12px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px;">
                 <div style="background: #f8f9fa; padding: 8px; border-radius: 6px; font-size: 12px; border-left: 3px solid #2ecc71;">
-                    <div style="margin-bottom: 4px;"><strong>Attribué à (3 mois) :</strong></div>
+                    <div style="margin-bottom: 6px;"><strong>👤 Nom & Prénom :</strong></div>
                     ${modeEdition.territoires ? 
-                        `<input id="proc-${t.id}" value="${t.proclamateur}" placeholder="Nom & Prénom" style="width:100%; padding:4px; font-size:12px; margin-bottom:5px;">` : 
-                        `<div style="font-size:14px; font-weight:bold; color:#2c3e50;">${t.proclamateur || "Disponible"}</div>`
+                        `<input id="proc-${t.id}" value="${t.proclamateur}" placeholder="Saisir Nom & Prénom" style="width:100%; padding:5px; box-sizing: border-box; font-size:12px; margin-bottom:8px;">` : 
+                        `<div style="font-size:14px; font-weight:bold; color:#2c3e50; margin-bottom:8px;">${t.proclamateur || "Disponible"}</div>`
                     }
-                    <div style="margin-top: 4px; display:flex; justify-content:space-between; font-size:11px; gap:5px; align-items:center;">
-                        <div>Sortie: ${modeEdition.territoires ? `<input type="date" id="date-${t.id}" value="${t.dateAttribution}" style="font-size:11px;">` : (t.dateAttribution ? new Date(t.dateAttribution).toLocaleDateString('fr-FR') : "-")}</div>
-                        ${t.dateAttribution ? `<div style="color:#e67e22; font-weight:bold;">Échéance: ${dateEcheance}</div>` : ""}
+                    <div style="display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: #566573;">
+                        <div>📅 <strong>Date de sortie :</strong> ${modeEdition.territoires ? `<input type="date" id="date-${t.id}" value="${t.dateAttribution}" style="font-size:11px;">` : (t.dateAttribution ? new Date(t.dateAttribution).toLocaleDateString('fr-FR') : "-")}</div>
+                        ${t.dateAttribution ? `<div style="color:#e67e22; font-weight:bold; margin-top: 2px;">📥 <strong>Date de rentrée prévue :</strong> ${dateEcheance}</div>` : ""}
                     </div>
                 </div>
                 <div style="border: 1px dashed #b2babb; padding: 10px; border-radius: 6px; font-size: 13px; background: #fefefe; min-height: 55px;">
@@ -559,10 +557,10 @@ function afficherTerritoires() {
     document.body.innerHTML = `
     <div style="font-family: sans-serif; background: #f4f6f9; min-height: 100vh; padding-bottom:40px;">
         <nav style="background: #3498db; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-            <h2 style="margin:0; font-size:18px;">🗺️ Territory Helper - 120 Cartes</h2>
+            <h2 style="margin:0; font-size:18px;">🗺️ Cartothèque - 120 Cartes</h2>
             <div>
                 <button onclick="${modeEdition.territoires ? 'window.sauvegarderTerritoires()' : 'window.basculerEditionTerritoires()'}" style="padding: 6px 12px; cursor:pointer; font-weight:bold; background:#2c3e50; color:white; border:none; border-radius:4px; font-size:13px;">
-                    ${modeEdition.territoires ? '💾 Sauver Attributions' : '✏️ Gérer Sorties (3 mois)'}
+                    ${modeEdition.territoires ? '💾 Sauver Attributions' : '✏️ Gérer les Cartes'}
                 </button>
                 <button onclick="window.changerPage('accueil')" style="padding: 6px 12px; cursor:pointer; background:white; color:#3498db; border:1px solid white; border-radius:4px; font-weight:bold; margin-left:5px; font-size:13px;">Accueil</button>
             </div>
