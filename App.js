@@ -71,7 +71,7 @@ function afficherAccueil() {
                 </div>
                 <div style="background: white; padding: 25px; border-radius: 10px; border-top: 5px solid #9b59b6; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
                     <h3>🔊 Sonorisation & Estrade</h3>
-                    <p style="color: #7f8c8d; font-size: 14px;">Planning des affectations audio, vidéo, Zoom et estrade 2026.</p>
+                    <p style="color: #7f8c8d; font-size: 14px;">Programme Sonorisation 2026 et suivi des équipes tech.</p>
                     <button onclick="window.changerPage('sonorisation')" style="background-color: #9b59b6; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer;">Ouvrir le pôle</button>
                 </div>
             </div>
@@ -105,7 +105,7 @@ function afficherSonorisation() {
     document.body.innerHTML = `
     <div style="font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f4f6f9; margin: 0; min-height: 100vh;">
         <nav style="background-color: #9b59b6; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-            <h1 style="margin: 0; font-size: 22px;">🔊 Assemblée de Monplaisir - Programme 2026</h1>
+            <h1 style="margin: 0; font-size: 22px;">🔊 Assemblée de Monplaisir - Programme Sonorisation 2026</h1>
             <div>
                 <button onclick="${modeEdition ? 'window.sauvegarderDonnées()' : 'window.basculerEdition()'}" style="background-color: ${modeEdition ? '#27ae60' : '#2980b9'}; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px;">
                     ${modeEdition ? '💾 Sauvegarder' : '✏️ Modifier le Tableau'}
