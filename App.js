@@ -1,4 +1,4 @@
-// --- 5. INITIALISATION DES 120 CARTES (INCLUSION DIRECTE) ---
+// --- Initialisation des territoires avec chemin vers dossier 'images' ---
 let donnéesTerritoires = [];
 for (let i = 1; i <= 120; i++) {
     if (i === 89) {
@@ -7,7 +7,23 @@ for (let i = 1; i <= 120; i++) {
             proclamateur: "Mambole Lydia",
             dateAttribution: "2026-06-04",
             recto: "📍 Route de Blonzac (Satellite)",
-            verso: "🏠 Liste des habitations (1-35)",
+            verso: "🏠 Habitations 1-35",
             vueVerso: false,
-            // Voici tes photos en format texte, sans aucun lien externe :
-            urlImageRecto: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAo
+            // Chemin relatif vers ton dossier images
+            urlImageRecto: "images/carte89-recto.jpg",
+            urlImageVerso: "images/carte89-verso.jpg"
+        });
+    } else {
+        donnéesTerritoires.push({
+            id: i,
+            proclamateur: "",
+            dateAttribution: "",
+            recto: `Secteur ${i}`,
+            verso: `Détails ${i}`,
+            vueVerso: false,
+            urlImageRecto: "",
+            urlImageVerso: ""
+        });
+    }
+}
+// ... (le reste de ton code habituel reste identique) ...
