@@ -13,13 +13,11 @@ for (let i = 1; i <= 120; i++) {
 // --- LOGIQUE D'AFFICHAGE ---
 function afficherTerritoires() {
     const conteneur = document.getElementById('conteneur-principal');
-    
-    // Si la page n'est pas encore chargée ou le conteneur absent, on arrête
     if (!conteneur) return;
 
     let cartesHtml = donnéesTerritoires.map(t => {
         return `
-        <div style="background: white; border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 8px;">
+        <div style="background: white; border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 8px; width: 200px;">
             <h3>Carte N° ${t.id}</h3>
             <p><strong>Proclamateur :</strong> ${t.proclamateur || "Disponible"}</p>
             <p><strong>Localisation :</strong> ${t.vueVerso ? t.verso : t.recto}</p>
@@ -27,11 +25,9 @@ function afficherTerritoires() {
         </div>`;
     }).join("");
 
-    // On injecte uniquement dans le conteneur, JAMAIS dans le body entier
-    conteneur.innerHTML = `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">${cartesHtml}</div>`;
+    conteneur.innerHTML = `<div style="display: flex; flex-wrap: wrap;">${cartesHtml}</div>`;
 }
 
-// Fonction pour retourner la carte
 window.basculerRectoVerso = function(id) {
     let t = donnéesTerritoires.find(item => item.id === id);
     if (t) { 
@@ -40,7 +36,22 @@ window.basculerRectoVerso = function(id) {
     }
 };
 
-// --- DÉMARRAGE SÉCURISÉ ---
-document.addEventListener('DOMContentLoaded', () => {
-    afficherTerritoires();
-});
+document.addEventListener('DOMContentLoaded', afficherTerritoires);
+
+2. Ton fichier index.html (La structure)
+
+Assure-toi qu'il ressemble à ceci pour que le JavaScript puisse s'y accrocher :
+HTML
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Monplaisir App</title>
+</head>
+<body>
+    <h1>Gestion des Territoires</h1>
+    <div id="conteneur-principal"></div>
+    <script src="App.js"></script>
+</body>
+</html>
