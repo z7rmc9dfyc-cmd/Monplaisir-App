@@ -1,4 +1,4 @@
-// --- DONNÉES (Gardées telles quelles) ---
+// --- DONNÉES ---
 let donnéesTerritoires = [];
 for (let i = 1; i <= 120; i++) {
     donnéesTerritoires.push({
@@ -10,13 +10,12 @@ for (let i = 1; i <= 120; i++) {
     });
 }
 
-// --- FONCTION SÉCURISÉE ---
+// --- LOGIQUE D'AFFICHAGE ---
 function afficherTerritoires() {
     const conteneur = document.getElementById('conteneur-principal');
-    if (!conteneur) {
-        console.error("Erreur : Impossible de trouver #conteneur-principal dans index.html");
-        return;
-    }
+    
+    // Si la page n'est pas encore chargée ou le conteneur absent, on arrête
+    if (!conteneur) return;
 
     let cartesHtml = donnéesTerritoires.map(t => {
         return `
@@ -28,9 +27,11 @@ function afficherTerritoires() {
         </div>`;
     }).join("");
 
+    // On injecte uniquement dans le conteneur, JAMAIS dans le body entier
     conteneur.innerHTML = `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">${cartesHtml}</div>`;
 }
 
+// Fonction pour retourner la carte
 window.basculerRectoVerso = function(id) {
     let t = donnéesTerritoires.find(item => item.id === id);
     if (t) { 
@@ -39,7 +40,7 @@ window.basculerRectoVerso = function(id) {
     }
 };
 
-// --- ATTENDRE QUE TOUT SOIT CHARGÉ ---
+// --- DÉMARRAGE SÉCURISÉ ---
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Page chargée, lancement de l'affichage...");
     afficherTerritoires();
+});
