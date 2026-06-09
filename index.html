@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Monplaisir App</title>
-</head>
-<body>
-    <nav>
-        <button>🔊 Sonorisation</button>
-        <button>🗺️ Gestion des Territoires</button>
-    </nav>
+<nav style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <button onclick="afficherSection('sonorisation')">🔊 Sonorisation</button>
+    <button onclick="afficherSection('discours')">🎤 Discours</button>
+    <button onclick="afficherSection('nettoyage')">🧼 Nettoyage</button>
+    <button onclick="afficherSection('vem')">📖 Vie et Ministère</button>
+    <button onclick="afficherSection('territoires')">🗺️ Territoires</button>
+</nav>
 
-    <div id="conteneur-principal"></div>
-
-    <script src="App.js"></script>
-</body>
-</html>
+<div id="conteneur-principal">
+    <h2>Bienvenue sur votre application</h2>
+</div>
