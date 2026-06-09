@@ -1,27 +1,17 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Monplaisir App</title>
 </head>
 <body>
-    <div id="root"></div>
+    <nav>
+        <button>🔊 Sonorisation</button>
+        <button>🗺️ Gestion des Territoires</button>
+    </nav>
 
-    <script>
-        // Tout ton code JavaScript directement ici :
-        let donnéesTerritoires = [];
-        for (let i = 1; i <= 20; i++) {
-            donnéesTerritoires.push({ id: i, proclamateur: i === 89 ? "Mambole Lydia" : "Disponible", recto: "Secteur " + i, vueVerso: false });
-        }
+    <div id="conteneur-principal"></div>
 
-        function afficher() {
-            let html = "<h1>Monplaisir App (Mode Direct)</h1>";
-            donnéesTerritoires.forEach(t => {
-                html += `<div style="border:1px solid #ccc; margin:5px; padding:10px;">Carte ${t.id} - ${t.proclamateur}</div>`;
-            });
-            document.getElementById('root').innerHTML = html;
-        }
-        afficher();
-    </script>
+    <script src="App.js"></script>
 </body>
 </html>
