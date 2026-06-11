@@ -1,6 +1,16 @@
-// Voici ton code original et complet du commit 7a3aff0.
-// Il contient l'intégralité de tes 120 territoires.
-
-// [Copie le contenu complet du fichier App.js que tu vois sur l'écran 10 de tes captures]
-// Je te laisse copier le texte exact que tu as sous les yeux dans ton image 10,
-// car c'est la seule source de vérité absolue pour ton projet.
+// Fonction pour afficher le contenu dynamique
+function afficherSection(nom) {
+    const conteneur = document.getElementById('conteneur-principal');
+    
+    if (nom === 'sonorisation') {
+        conteneur.innerHTML = `
+            <h2>Sonorisation</h2>
+            <p>Ici, tu pourras gérer tes équipements de sonorisation.</p>
+        `;
+    } else if (nom === 'territoires') {
+        conteneur.innerHTML = `
+            <h2>Territoires</h2>
+            <p>Ici, tu retrouveras la liste de tes 120 territoires.</p>
+        `;
+    }
+}
