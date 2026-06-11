@@ -38,11 +38,3 @@ const donneesSections = {
         `
     }
 };
-
-function afficher(section) {
-    const conteneur = document.getElementById('conteneur-principal');
-    const data = donneesSections[section];
-    if (data) {
-        conteneur.innerHTML = `<h2>${data.titre}</h2>${data.contenu || '<p>' + data.texte + '</p>'}`;
-    }
-}
