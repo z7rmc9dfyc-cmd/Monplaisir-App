@@ -23,13 +23,13 @@ const donneesSections = {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>04/04</td><td>Mariage...</td><td>HILAIRE</td><td>BENONY</td><td>LOGNOS</td><td class="groupe-highlight">Groupe ZIG</td></tr>
+                        <tr><td>04/04</td><td>Mariage et sexualité</td><td>HILAIRE</td><td>BENONY</td><td>LOGNOS</td><td class="groupe-highlight">Groupe ZIG</td></tr>
                         <tr><td>11/04</td><td>Vaincre le mal</td><td>LOGNOS</td><td>MAMBOL</td><td>ZIG</td><td>-</td></tr>
-                        <tr><td>18/04</td><td>Perle valeur</td><td>AÏELLO</td><td>ASTASIE</td><td>DANICAN</td><td class="groupe-highlight">Groupe BENONY</td></tr>
+                        <tr><td>18/04</td><td>Perle de valeur</td><td>AÏELLO</td><td>ASTASIE</td><td>DANICAN</td><td class="groupe-highlight">Groupe BENONY</td></tr>
                         <tr><td>02/05</td><td>Monde dépravé</td><td>POMMIER</td><td>ZIG</td><td>LYCAON</td><td class="groupe-highlight">Groupe MAMBOL</td></tr>
                         <tr><td>09/05</td><td>Hauteur sûre</td><td>MAMBOL</td><td>TORVAL</td><td>MANNETIER</td><td>-</td></tr>
                         <tr><td>16/05</td><td>But dans la vie</td><td>FERDY</td><td>GILLES</td><td>MELGAR</td><td class="groupe-highlight">Groupe GILLES</td></tr>
-                        <tr><td>23/05</td><td>Temps détresse</td><td>LANDAIS</td><td>MANNETIER</td><td>JOURSON</td><td class="groupe-highlight">Groupe LOGNOS</td></tr>
+                        <tr><td>23/05</td><td>Temps de détresse</td><td>LANDAIS</td><td>MANNETIER</td><td>JOURSON</td><td class="groupe-highlight">Groupe LOGNOS</td></tr>
                         <tr><td>30/05</td><td>Marchez avec Dieu</td><td>ADHEL</td><td>SIBA</td><td>BENONY</td><td>-</td></tr>
                         <tr><td>27/06</td><td>Utilisons l'instruction</td><td>...</td><td>CASI</td><td>LOGNOS</td><td class="groupe-highlight">Groupe MANNETIER</td></tr>
                     </tbody>
