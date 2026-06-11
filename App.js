@@ -6,7 +6,7 @@ const donneesSections = {
                 .table-container { overflow-x: auto; }
                 .styled-table { width: 100%; border-collapse: collapse; font-family: sans-serif; }
                 .styled-table thead tr { background-color: #2c3e50; color: #ffffff; text-align: left; }
-                .styled-table th, .styled-table td { padding: 10px; border-bottom: 1px solid #dddddd; font-size: 13px; }
+                .styled-table th, .styled-table td { padding: 8px; border-bottom: 1px solid #dddddd; font-size: 12px; }
                 .styled-table tbody tr:nth-of-type(even) { background-color: #f3f3f3; }
                 .groupe-highlight { color: #c0392b; font-weight: bold; }
             </style>
