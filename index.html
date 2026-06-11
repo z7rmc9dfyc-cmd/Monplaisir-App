@@ -4,50 +4,27 @@
     <meta charset="UTF-8">
     <title>Monplaisir Goyave</title>
     <style>
-        /* Style général */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; }
-        
-        /* Bandeau de titre principal */
-        header { 
-            background-color: #2c3e50; 
-            color: white; 
-            padding: 20px; 
-            text-align: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
-
-        /* Menu de navigation */
+        header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
         nav { 
             display: flex; 
+            flex-wrap: wrap; 
             justify-content: center; 
             background-color: #ecf0f1; 
             padding: 10px; 
-            border-bottom: 1px solid #dcdde1;
+            gap: 10px;
         }
         button { 
-            padding: 10px 20px; 
-            margin: 0 10px; 
+            padding: 10px 15px; 
             border: none; 
             border-radius: 4px; 
             background-color: #3498db; 
             color: white; 
             cursor: pointer; 
             font-weight: bold;
-            transition: background 0.3s;
         }
         button:hover { background-color: #2980b9; }
-
-        /* Zone de contenu */
-        #conteneur-principal { 
-            max-width: 800px; 
-            margin: 30px auto; 
-            padding: 20px; 
-            background: white; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            min-height: 200px;
-        }
+        #conteneur-principal { max-width: 800px; margin: 30px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); min-height: 200px; }
     </style>
 </head>
 <body>
@@ -57,7 +34,12 @@
     </header>
 
     <nav>
+        <button onclick="afficher('discours')">Discours</button>
+        <button onclick="afficher('cahier')">Cahier Vie et Min.</button>
+        <button onclick="afficher('predication')">Prédication</button>
+        <button onclick="afficher('presentoir')">Présentoir</button>
         <button onclick="afficher('sonorisation')">Sonorisation</button>
+        <button onclick="afficher('nettoyage')">Nettoyage</button>
         <button onclick="afficher('territoires')">Territoires</button>
     </nav>
 
