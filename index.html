@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Monplaisir App</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        nav { margin-bottom: 20px; }
+        button { padding: 10px 20px; margin-right: 10px; cursor: pointer; }
+        #conteneur-principal { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+    </style>
 </head>
 <body>
-    <div id="conteneur-principal">
-        <h1>Bienvenue, Fredy</h1>
-        <p>Le système est prêt. Sélectionne une option :</p>
+    <nav>
         <button onclick="afficher('sonorisation')">Sonorisation</button>
         <button onclick="afficher('territoires')">Territoires</button>
+    </nav>
+    <div id="conteneur-principal">
+        <h1>Bienvenue, Fredy</h1>
+        <p>Sélectionne une option dans le menu ci-dessus.</p>
     </div>
     <script src="App.js"></script>
 </body>
